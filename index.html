@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ok</title>
+    <style>
+        body{
+            overflow: hidden;
+            /* background-color: rgb(53, 0, 48); --> */
+            background: radial-gradient(#7b1fa2, /* Насыщенный фиолетовый (центр) */
+        #4a148c, /* Глубокий темный фиолетовый */
+        #310d5e, /* Почти баклажановый (тень) */
+        #511a8d  /* Спокойный фиолетовый для мягкого перехода */);
+        background-size: 200% 200%;
+        animation: gradient-animation 30s ease-in-out infinite;
+            color: yellow;
+            background-attachment: fixed;
+            margin: 0;
+        }
+        @keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+        button{
+            width: 100px;
+            margin: 0px;
+            border: 0;
+            float: left;
+            height: 50px;
+            background-color: rgb(38, 38, 38);
+            font-size: 15px;
+            font-weight: bold;
+        }
+        button:hover{
+            background-color: green;
+        }
+        #menu{
+            width: 100%;
+            height: 50px;
+            background-color: rgb(38, 38, 38);
+        }
+        #gear{
+            width: auto;
+            text-align: right;
+            float: right;
+        }
+
+        #main-gear:hover {
+    /* Запускаем анимацию только при наведении */
+    animation: spin 4s linear infinite;
+    
+    /* Опционально: можно усилить свечение при наведении */
+    filter: drop-shadow(0 0 20px rgba(180, 35, 213, 0.8));
+    color: #d580ff; /* Слегка меняем оттенок на более яркий фиолетовый */
+    cursor: pointer;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <button>RAM</button>
+        <button>CPU</button>
+        <button>DISK</button>
+        <button>NETWORK</button>
+        <button id="gear"></button>
+    </div>  
+</body>
+<script>
+const SVG_GEAR = `
+<svg id="main-gear" width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g fill="white">
+        <circle cx="50" cy="50" r="33"/>
+        
+        <g transform="translate(50, 50)">
+            <rect x="-10" y="-50" width="20" height="20" rx="3" ry="3"/>
+            <rect x="-10" y="-50" width="20" height="20" rx="3" ry="3" transform="rotate(45)"/>
+            <rect x="-10" y="-50" width="20" height="20" rx="3" ry="3" transform="rotate(90)"/>
+            <rect x="-10" y="-50" width="20" height="20" rx="3" ry="3" transform="rotate(135)"/>
+            <rect x="-10" y="-50" width="20" height="20" rx="3" ry="3" transform="rotate(180)"/>
+            <rect x="-10" y="-50" width="20" height="20" rx="3" ry="3" transform="rotate(225)"/>
+            <rect x="-10" y="-50" width="20" height="20" rx="3" ry="3" transform="rotate(270)"/>
+            <rect x="-10" y="-50" width="20" height="20" rx="3" ry="3" transform="rotate(315)"/>
+        </g>
+    </g>
+    
+    <circle cx="50" cy="50" r="18" fill="#1e1e1e" id="gear-hole"/>
+</svg>
+`;
+document.getElementById('gear').innerHTML = SVG_GEAR;
+</script>
+</html>
