@@ -33,10 +33,13 @@
             font-size: 15px;
             font-weight: bold;
             color: rgb(110, 46, 110);
-            opacity: 0;
         }
         button:hover{
             background-color: rgb(5, 46, 5);
+            cursor: pointer;
+            filter: drop-shadow(0 0 20px rgba(180, 35, 213, 0.8));
+            background-color:rgba(121, 25, 143, 0.8); 
+            color: rgb(20, 10, 20);
         }
         #menu{
             width: 100%;
@@ -61,13 +64,7 @@
         }
 
         #main-gear:hover {
-    /* Запускаем анимацию только при наведении */
     animation: spin 4s linear infinite;
-    
-    /* Опционально: можно усилить свечение при наведении */
-    filter: drop-shadow(0 0 20px rgba(180, 35, 213, 0.8));
-    color: #d580ff; /* Слегка меняем оттенок на более яркий фиолетовый */
-    cursor: pointer;
 }
 
 @keyframes spin {

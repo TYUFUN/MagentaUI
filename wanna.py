@@ -1,15 +1,16 @@
 import os
 import requests
 from time import sleep
-def parser(type: str, want: str) -> str:
+def parser(type: str, want: str) ->  str: # type: ignore
     for p in data:
         if p["class"] == type:
             for name, value in p["value"].items():
                 if name == want:
-                    return name, value
-def printBG(type: str, want: str) -> str:
-    name, value = parser(type, want)
-    print(name, ":", value, "Gb")
+                    return name, value  # type: ignore
+        return "", ""  # type: ignore
+    
+    
+    
 if not os.path.exists("config2.txt"):
     print("didn't find file config.txt, starting configuration:")
     host_value = str(input("Enter host ip: "))
@@ -27,7 +28,5 @@ port = b.split("=")
 while True:
     r = requests.get(f"http://{host[1]}:{port[1]}/")
     data = r.json()
-    printBG("ram", "availble_ram")
-    printBG("cpu", "cpu_used")
-                   
+    print(data)          
     sleep(2)
