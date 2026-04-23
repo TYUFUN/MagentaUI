@@ -19,9 +19,16 @@ info =  [{'class': 'ram',
                'cores': 8}},
          {'class': 'network',
           'value': {'connections': {'Ethernet 3': [True, 2, 1000, 1500, ''], 'Ethernet': [False, 2, 0, 1500, ''], 'Сетевое подключение Bluetooth': [False, 2, 3, 1500, ''], 'Loopback Pseudo-Interface 1': [True, 2, 1073, 1500, ''], 'Wi-Fi': [True, 2, 270, 1500, ''], 'Połączenie lokalne* 1': [False, 2, 0, 1500, ''], 'Połączenie lokalne* 2': [False, 2, 0, 1500, ''], 'Teredo Tunneling Pseudo-Interface': [True, 2, 0, 1472, '']}}}]
-# example input data (sorted by classes)
+# example input data
+class Api:
+    def send_data(self, want: str) -> dict:
+        for a in info:
+            if want == a["class"]:
+                return a["value"]
+        return {}
+api = Api()
 webview.create_window('KBC', 'index.html', maximized=True,
     resizable=True,
     easy_drag=True,
-    background_color="#000000") #html= для передачи переменной в вебвью
+    background_color="#000000", js_api=api) #html= для передачи переменной в вебвью
 webview.start()

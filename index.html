@@ -59,12 +59,12 @@
             height: 1500px !important;
         }
         div{
-            width: 100px;
+            width: 200px;
             height: 100px;
         }
-
-        #main-gear:hover {
-    animation: spin 4s linear infinite;
+#main-gear:hover {
+    color: gray;
+    animation: spin 6s linear infinite;
 }
 
 @keyframes spin {
@@ -80,7 +80,7 @@
 <body>
     
     <div id="menu">
-        <button>RAM</button>
+        <button id="ram">RAM</button>
         <button>CPU</button>
         <button>DISK</button>
         <button>NETWORK</button>
@@ -89,7 +89,7 @@
     <!-- masz diva naczelnego, 4 główne i 11 pobocznych-->
     <div id="container">
         <div id="diva1">
-            <div id="divq1"></div>
+            <div id="divq1"><p id="p1"></p></div>
             <div id="divq2"></div>
             <div id="divq3"></div>
             <div id="divq4"></div>
@@ -110,9 +110,21 @@
 </div>
 </body>
 <script>
+const p1 = document.querySelector("#p1");
+const ram = document.getElementById("ram");
+ram.addEventListener("click", () => {
+    window.pywebview.api.send_data("ram").then(data => {
+        a = data["availble_ram"]
+        p1.innerHTML = `availble_ram: ${a.toFixed(2)}Gb`;
+    });
+});
+
+
+
+
 const SVG_GEAR = `
 <svg id="main-gear" width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="white">
+    <g fill="currentColor">
         <circle cx="50" cy="50" r="33"/>
         
         <g transform="translate(50, 50)">
