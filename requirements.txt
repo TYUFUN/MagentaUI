@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pywebview
+psutil
+requests
+PyQt6
+PyQt6-WebEngine

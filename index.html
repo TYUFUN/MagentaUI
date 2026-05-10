@@ -55,12 +55,16 @@
             display: flex;
             justify-content: space-evenly;
             flex: wrap;
-            width: 2000px !important;
-            height: 1500px !important;
+            width: 1500px !important;
+            height: 800px !important;
         }
         div{
             width: 200px;
             height: 100px;
+        }
+        p{
+            font-size: 150%;
+            text-shadow: 15px 15px 10px black;
         }
 #main-gear:hover {
     color: gray;
@@ -75,52 +79,146 @@
         transform: rotate(360deg);
     }
 }
+#diva1{
+    display: none;
+}
     </style>
 </head>
 <body>
     
     <div id="menu">
         <button id="ram">RAM</button>
-        <button>CPU</button>
-        <button>DISK</button>
-        <button>NETWORK</button>
+        <button id="cpu">CPU</button>
+        <button id="disk">DISK</button>
+        <button id="net">NETWORK</button>
         <button id="gear"></button>
     </div>
-    <!-- masz diva naczelnego, 4 główne i 11 pobocznych-->
+    <!-- div container 4 main divs and 12 p with contents-->
     <div id="container">
         <div id="diva1">
-            <div id="divq1"><p id="p1"></p></div>
-            <div id="divq2"></div>
-            <div id="divq3"></div>
-            <div id="divq4"></div>
+            <p id="p1"></p>
+            <p id="p2"></p>
+            <p id="p3"></p>
         </div>
         <div id="diva2">
-            <div id="divq5"></div>
-            <div id="divq6"></div>
-            <div id="divq7"></div>
+            <p id="p4"></p>
+            <p id="p5"></p>
+            <p id="p6"></p>
+            <p id="p7"></p>
         </div>
         <div id="diva3">
-            <div id="divq8"></div>
-            <div id="divq9"></div>
-            <div id="divq10"></div>
+            <p id="p8"></p>
+            <p id="p9"></p>
+            <p id="p10"></p>
+            <p id="p11"></p>
         </div>
         <div id="diva4">
-            <div id="divq11"></div>
+            <p id="p12"></p>
         </div>
 </div>
+<p id="test123"></p>
 </body>
 <script>
+    // containers for class
+const cont_ram = document.getElementById("diva1");
+const cont_cpu = document.getElementById("diva2");
+const cont_disk = document.getElementById("diva3");
+const cont_net = document.getElementById("diva4");
+    //section ram
 const p1 = document.querySelector("#p1");
+const p2 = document.querySelector("#p2");
+const p3 = document.querySelector("#p3");
 const ram = document.getElementById("ram");
 ram.addEventListener("click", () => {
+    cont_net.style.display = "none";
+    cont_ram.style.display = "block";
+    cont_cpu.style.display = "none";
+    cont_disk.style.display = "none";
     window.pywebview.api.send_data("ram").then(data => {
-        a = data["availble_ram"]
-        p1.innerHTML = `availble_ram: ${a.toFixed(2)}Gb`;
+        availble_ram = data["availble_ram"]
+        p1.innerHTML = `availble_ram: ${availble_ram.toFixed(2)}Gb`;
+        used_ram = data["used_ram"]
+        p2.innerHTML = `used_ram: ${used_ram.toFixed(2)}Gb`;
+        ram_percent = data["ram_percent"]
+        p3.innerHTML = `ram_percent: ${ram_percent.toFixed(1)}%`;
     });
 });
-
-
-
+//section cpu
+const p4 = document.querySelector("#p4");
+const p5 = document.querySelector("#p5");
+const p6 = document.querySelector("#p6");
+const p7 = document.querySelector("#p7");
+const cpu = document.getElementById("cpu");
+cpu.addEventListener("click", () => {
+    window.pywebview.api.send_data("cpu").then(data => {
+        cont_net.style.display = "none";
+        cont_ram.style.display = "none";
+        cont_cpu.style.display = "block";
+        cont_disk.style.display = "none";
+        all_cpu = data["all_cpu"][0]
+        p4.innerHTML = `
+            all_cpu: <br>
+            current: ${all_cpu.current.toFixed(1)}GHz <br>
+            max: ${all_cpu.max.toFixed(1)}GHz 
+        `;
+        one_cpu = data["one_cpu"]
+        p5.innerHTML = `
+            one_cpu: <br>
+            current: ${one_cpu.current.toFixed(1)}GHz <br>
+            max: ${one_cpu.max.toFixed(1)}GHz
+        `;
+        cpu_used = data["cpu_used"]
+        p6.innerHTML = `cpu_used: ${cpu_used.toFixed(1)}%`;
+        cores = data["cores"]
+        p7.innerHTML = `cores: ${cores}`;
+    });
+});
+//section disk
+const p8 = document.querySelector("#p8");
+const p9 = document.querySelector("#p9");
+const p10 = document.querySelector("#p10");
+const p11 = document.querySelector("#p11");
+const disk = document.getElementById("disk");
+disk.addEventListener("click", () => {
+    window.pywebview.api.send_data("disk").then(data => {
+        cont_net.style.display = "none";
+        cont_ram.style.display = "none";
+        cont_cpu.style.display = "none";
+        cont_disk.style.display = "block";
+        availble_disk = data["availble_disk"]
+        p8.innerHTML = `avaible_disk: ${availble_disk.toFixed(2)}Gb`;
+        disk_total = data["disk_total"]
+        p9.innerHTML = `disk_total: ${disk_total.toFixed(2)}Gb`;
+        disk_used = data["disk_used"]
+        p10.innerHTML = `disk_used: ${disk_used.toFixed(2)}Gb`;
+        disk_percent = data["disk_percent"]
+        p11.innerHTML = `disk_percent: ${disk_percent.toFixed(1)}%`;
+    });
+});
+//section network
+const p12 = document.querySelector("#p12");
+const net = document.getElementById("net");
+net.addEventListener("click", () => {
+    window.pywebview.api.send_data("network").then(data => {
+        cont_ram.style.display = "none";
+        cont_cpu.style.display = "none";
+        cont_disk.style.display = "none";
+        cont_net.style.display = "block";
+        //
+        a = data["connections"]
+        p12.innerHTML = `
+            connections: <br>
+            Ethernet 3: ${a["Ethernet 3"][2]} Mbps <br>
+            Ethernet: ${a["Ethernet"][2]} Mbps <br>
+            Сетевое подключение Bluetooth: ${a["Сетевое подключение Bluetooth"][2]} Mbps <br>
+            Loopback Pseudo-Interface 1: ${a["Loopback Pseudo-Interface 1"][2]} Mbps <br>
+            Wi-Fi: ${a["Wi-Fi"][2]} Mbps <br>
+            Połączenie lokalne* 1: ${a["Połączenie lokalne* 1"][2]} Mbps <br>
+            Połączenie lokalne* 2: ${a["Połączenie lokalne* 2"][2]} Mbps <br>
+            Teredo Tunneling Pseudo-Interface: ${a["Teredo Tunneling Pseudo-Interface"][2]} Mbps <br>
+        `;
+    });
+});
 
 const SVG_GEAR = `
 <svg id="main-gear" width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
