@@ -27,8 +27,8 @@ class Api:
                 return a["value"]
         return {}
 api = Api()
-webview.create_window('KBC', 'index.html', maximized=True,
-    resizable=True,
+webview.create_window('KBC', 'index.html', width = 1000, height = 800,
+    resizable=False,
     easy_drag=True,
     background_color="#000000", js_api=api) #html= для передачи переменной в вебвью
 webview.start()

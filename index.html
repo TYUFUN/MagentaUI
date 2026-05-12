@@ -52,19 +52,31 @@
             float: right;
         }
         #container{
-            display: flex;
-            justify-content: space-evenly;
-            flex: wrap;
-            width: 1500px !important;
-            height: 800px !important;
+            width: 1000px !important;
+            height: 700px !important;
         }
-        div{
-            width: 200px;
+        /*front-end div section*/
+        #diva1,#diva2,#diva3,#diva4{
+            justify-content: space-evenly;
+            width: 1000px;
+            height: 800px;
+        }
+        #p1,#p2,#p3{
+            width: 400px;
             height: 100px;
         }
+        #p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11{
+            width: 150px;
+        }
+        #p12{
+            width: 800px;
+            height: 700px !important;
+        }
         p{
+            display: block;
             font-size: 150%;
-            text-shadow: 15px 15px 10px black;
+            text-shadow: 10px 10px 8px black;
+            text-align: center;
         }
 #main-gear:hover {
     color: gray;
@@ -131,7 +143,7 @@ const p3 = document.querySelector("#p3");
 const ram = document.getElementById("ram");
 ram.addEventListener("click", () => {
     cont_net.style.display = "none";
-    cont_ram.style.display = "block";
+    cont_ram.style.display = "flex";
     cont_cpu.style.display = "none";
     cont_disk.style.display = "none";
     window.pywebview.api.send_data("ram").then(data => {
@@ -153,7 +165,7 @@ cpu.addEventListener("click", () => {
     window.pywebview.api.send_data("cpu").then(data => {
         cont_net.style.display = "none";
         cont_ram.style.display = "none";
-        cont_cpu.style.display = "block";
+        cont_cpu.style.display = "flex";
         cont_disk.style.display = "none";
         all_cpu = data["all_cpu"][0]
         p4.innerHTML = `
@@ -184,7 +196,7 @@ disk.addEventListener("click", () => {
         cont_net.style.display = "none";
         cont_ram.style.display = "none";
         cont_cpu.style.display = "none";
-        cont_disk.style.display = "block";
+        cont_disk.style.display = "flex";
         availble_disk = data["availble_disk"]
         p8.innerHTML = `avaible_disk: ${availble_disk.toFixed(2)}Gb`;
         disk_total = data["disk_total"]
@@ -203,19 +215,19 @@ net.addEventListener("click", () => {
         cont_ram.style.display = "none";
         cont_cpu.style.display = "none";
         cont_disk.style.display = "none";
-        cont_net.style.display = "block";
+        cont_net.style.display = "flex";
         //
         a = data["connections"]
         p12.innerHTML = `
             connections: <br>
-            Ethernet 3: ${a["Ethernet 3"][2]} Mbps <br>
-            Ethernet: ${a["Ethernet"][2]} Mbps <br>
-            Сетевое подключение Bluetooth: ${a["Сетевое подключение Bluetooth"][2]} Mbps <br>
-            Loopback Pseudo-Interface 1: ${a["Loopback Pseudo-Interface 1"][2]} Mbps <br>
-            Wi-Fi: ${a["Wi-Fi"][2]} Mbps <br>
-            Połączenie lokalne* 1: ${a["Połączenie lokalne* 1"][2]} Mbps <br>
-            Połączenie lokalne* 2: ${a["Połączenie lokalne* 2"][2]} Mbps <br>
-            Teredo Tunneling Pseudo-Interface: ${a["Teredo Tunneling Pseudo-Interface"][2]} Mbps <br>
+            Ethernet 3: ${a["Ethernet 3"][2]} Mbps <br><br>
+            Ethernet: ${a["Ethernet"][2]} Mbps <br><br>
+            Сетевое подключение Bluetooth: ${a["Сетевое подключение Bluetooth"][2]} Mbps <br><br>
+            Loopback Pseudo-Interface 1: ${a["Loopback Pseudo-Interface 1"][2]} Mbps <br><br>
+            Wi-Fi: ${a["Wi-Fi"][2]} Mbps <br><br>
+            Połączenie lokalne* 1: ${a["Połączenie lokalne* 1"][2]} Mbps <br><br>
+            Połączenie lokalne* 2: ${a["Połączenie lokalne* 2"][2]} Mbps <br><br>
+            Teredo Tunneling Pseudo-Interface: ${a["Teredo Tunneling Pseudo-Interface"][2]} Mbps <br><br>
         `;
     });
 });
