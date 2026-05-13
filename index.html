@@ -4,97 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ok</title>
-    <style>
-        body{
-            overflow: hidden;
-            /* background-color: rgb(53, 0, 48); --> */
-            background: radial-gradient(#7b1fa2, /* Насыщенный фиолетовый (центр) */
-        #4a148c, /* Глубокий темный фиолетовый */
-        #310d5e, /* Почти баклажановый (тень) */
-        #511a8d  /* Спокойный фиолетовый для мягкого перехода */);
-        background-size: 200% 200%;
-        animation: gradient-animation 30s ease-in-out infinite;
-            color: yellow;
-            background-attachment: fixed;
-            margin: 0;
-        }
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        button{
-            width: 100px;
-            margin: 0px;
-            border: 0;
-            float: left;
-            height: 50px;
-            background-color: rgb(20, 10, 20);
-            font-size: 15px;
-            font-weight: bold;
-            color: rgb(110, 46, 110);
-        }
-        button:hover{
-            background-color: rgb(5, 46, 5);
-            cursor: pointer;
-            filter: drop-shadow(0 0 20px rgba(180, 35, 213, 0.8));
-            background-color:rgba(121, 25, 143, 0.8); 
-            color: rgb(20, 10, 20);
-        }
-        #menu{
-            width: 100%;
-            height: 50px;
-            background-color: rgb(19, 12, 16);
-        }
-        #gear{
-            width: auto;
-            text-align: right;
-            float: right;
-        }
-        #container{
-            width: 1000px !important;
-            height: 700px !important;
-        }
-        /*front-end div section*/
-        #diva1,#diva2,#diva3,#diva4{
-            justify-content: space-evenly;
-            width: 1000px;
-            height: 800px;
-        }
-        #p1,#p2,#p3{
-            width: 400px;
-            height: 100px;
-        }
-        #p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11{
-            width: 150px;
-        }
-        #p12{
-            width: 800px;
-            height: 700px !important;
-        }
-        p{
-            display: block;
-            font-size: 150%;
-            text-shadow: 10px 10px 8px black;
-            text-align: center;
-        }
-#main-gear:hover {
-    color: gray;
-    animation: spin 6s linear infinite;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-#diva1{
-    display: none;
-}
-    </style>
+    <link rel="stylesheet" href="static/basic_style.css">
+    <link rel="stylesheet" href="static/index.css">
 </head>
 <body>
     
@@ -103,7 +14,7 @@
         <button id="cpu">CPU</button>
         <button id="disk">DISK</button>
         <button id="net">NETWORK</button>
-        <button id="gear"></button>
+        <a href="settings.html"><button id="gear"></button></a>
     </div>
     <!-- div container 4 main divs and 12 p with contents-->
     <div id="container">

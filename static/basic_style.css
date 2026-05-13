@@ -1,0 +1,31 @@
+        body{
+            overflow: hidden;
+            /* background-color: rgb(53, 0, 48); --> */
+            background: radial-gradient(#7b1fa2, /* Насыщенный фиолетовый (центр) */
+        #4a148c, /* Глубокий темный фиолетовый */
+        #310d5e, /* Почти баклажановый (тень) */
+        #511a8d  /* Спокойный фиолетовый для мягкого перехода */);
+        background-size: 200% 200%;
+        animation: gradient-animation 30s ease-in-out infinite;
+            color: yellow;
+            background-attachment: fixed;
+            margin: 0;
+        }
+        button{
+            width: 100px;
+            margin: 0px;
+            border: 0;
+            float: left;
+            height: 50px;
+            background-color: rgb(20, 10, 20);
+            font-size: 15px;
+            font-weight: bold;
+            color: rgb(110, 46, 110);
+        }
+        button:hover{
+            background-color: rgb(5, 46, 5);
+            cursor: pointer;
+            filter: drop-shadow(0 0 20px rgba(180, 35, 213, 0.8));
+            background-color:rgba(121, 25, 143, 0.8); 
+            color: rgb(20, 10, 20);
+        }

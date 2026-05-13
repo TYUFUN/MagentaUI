@@ -1,0 +1,12 @@
+#return{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    text-align: right;
+}
+#fix_dsp{
+    text-align: right;
+}
+button{
+    float: right;
+}
