@@ -1,35 +1,47 @@
-        #gear{
-            width: auto;
-            text-align: right;
-            float: right;
-        }
-        #container{
-            width: 1000px !important;
-            height: 700px !important;
-        }
-        /*front-end div section*/
-        #diva1,#diva2,#diva3,#diva4{
-            justify-content: space-evenly;
-            width: 1000px;
-            height: 800px;
-        }
-        #p1,#p2,#p3{
-            width: 400px;
-            height: 100px;
-        }
-        #p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11{
-            width: 150px;
-        }
-        #p12{
-            width: 800px;
-            height: 700px !important;
-        }
-        p{
-            display: block;
-            font-size: 150%;
-            text-shadow: 10px 10px 8px black;
-            text-align: center;
-        }
+#gear{
+    width: auto;
+    text-align: right;
+    float: right;
+}
+#container{
+    width: 100% !important;
+    height: 100% !important;
+}
+/*front-end div section*/
+#diva1,#diva2,#diva3,#diva4{
+    justify-content: space-evenly;
+    width: 1000px;
+    height: 800px;
+}
+#p1,#p2,#p3{
+    width: 300px;
+    height: 100px;
+    white-space: nowrap;
+}
+#p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11{
+    width: 150px;
+}
+#p12{
+    width: 800px;
+    height: 700px !important;
+}
+p{
+    display: block;
+    font-size: 150%;
+    text-shadow: 10px 10px 8px black;
+    text-align: center;
+}
+#diva1 {
+    display: none;
+}
+#ram-info{
+    display: flex;
+}
+#chart{
+    position: relative;
+    top: 20%;
+    right: 80%;
+}
 #main-gear:hover {
     color: gray;
     animation: spin 6s linear infinite;
@@ -42,7 +54,4 @@
     to {
         transform: rotate(360deg);
     }
-}
-#diva1{
-    display: none;
 }
