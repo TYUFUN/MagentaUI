@@ -1,12 +1,23 @@
 #return{
-    background-color: transparent;
+    width: auto;
     border: 0;
     cursor: pointer;
     text-align: right;
 }
 #fix_dsp{
-    text-align: right;
-}
-button{
     float: right;
+}
+
+#set{
+    font-size: 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 300px;
+    height: 110px;
+    margin: 0 auto;
+    margin-top: 200px;
+}
+#set input{
+    margin-top: 20px;
+    width: 150px;
 }
