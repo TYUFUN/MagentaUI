@@ -9,11 +9,14 @@
 <body>
   <div id="menu">
     <button>Basic settings</button>
+    <button id="css_cfg">Open styles folder</button>
     <div id="fix_dsp"><a href="index.html"><button id="return"></button></a></div>
     </div>
-    <div id="set">
-      <label>Enter IPv4: </label><input type="text" placeholder="127.0.0.1"><br>
-      <label>Enter port: </label><input type="text" placeholder="5500">
+    <div id="cont_basic">
+      <div id="set">
+        <label>Enter IPv4: </label><input type="text" placeholder="127.0.0.1"><br>
+        <label>Enter port: </label><input type="text" placeholder="5500">
+      </div>
     </div>
 </body>
 <script>
@@ -29,5 +32,9 @@
   <line x1="23" y1="9" x2="9" y2="23" stroke="#facc15" stroke-width="2.5" stroke-linecap="round" filter="url(#glow)"/>
 </svg>`
 document.getElementById("return").innerHTML = SVG;
+const css_cfg = document.getElementById("css_cfg");
+css_cfg.addEventListener("click", () => {
+  window.pywebview.api.open_file()
+})
 </script>
 </html>

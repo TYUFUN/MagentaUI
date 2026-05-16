@@ -1,5 +1,8 @@
 import webview
-
+from subprocess import Popen
+import platform
+if platform.system() == "Windows":
+    import os
 info =  [{'class': 'ram',
           'value': 
               {'availble_ram': 5.489540100097656,
@@ -26,8 +29,18 @@ class Api:
             if want == a["class"]:
                 return a["value"]
         return {}
+    def open_file(self):
+        if platform.system() == "Windows":
+            os.startfile("static") # type: ignore
+        else:
+            Popen(["xdg-open", "static"]) 
+    def create_cofnig(self, ip:str, port:str):
+        host_value = ip
+        port_value = port
+        with open("data1", "w", encoding="utf-8") as b:
+            b.write(f"IP={host_value}\nport={port_value}")
 api = Api()
-webview.create_window('KBC', 'index.html', width = 1000, height = 800,
+webview.create_window('MagentaUI', 'index.html', width = 1000, height = 800,
     resizable=False,
     easy_drag=True,
     background_color="#000000", js_api=api) #html= для передачи переменной в вебвью
