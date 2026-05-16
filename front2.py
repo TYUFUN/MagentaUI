@@ -34,9 +34,12 @@ class Api:
             os.startfile("static") # type: ignore
         else:
             Popen(["xdg-open", "static"]) 
-    def create_cofnig(self, ip:str, port:str):
-        with open("data1", "w", encoding="utf-8") as b:
+    def create_config(self, ip:str, port:str) -> str:
+        if not ip or not port:
+            return "error"           
+        with open("data1", "w", encoding="utf-8") as b: #in future pack all data to the bin
             b.write(f"IP={ip}\nport={port}")
+        return "succeful"
 api = Api()
 webview.create_window('MagentaUI', 'index.html', width = 1000, height = 800,
     resizable=False,
