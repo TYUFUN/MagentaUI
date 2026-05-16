@@ -35,10 +35,8 @@ class Api:
         else:
             Popen(["xdg-open", "static"]) 
     def create_cofnig(self, ip:str, port:str):
-        host_value = ip
-        port_value = port
         with open("data1", "w", encoding="utf-8") as b:
-            b.write(f"IP={host_value}\nport={port_value}")
+            b.write(f"IP={ip}\nport={port}")
 api = Api()
 webview.create_window('MagentaUI', 'index.html', width = 1000, height = 800,
     resizable=False,

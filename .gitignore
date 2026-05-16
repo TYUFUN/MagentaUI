@@ -3,3 +3,4 @@ old/
 venv/
 config.txt
 config2.txt
+bin/
