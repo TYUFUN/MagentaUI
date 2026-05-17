@@ -21,7 +21,7 @@
         <button id="apply">Apply</button>
         <button id="cancel">Cancel</button>
       </div>
-      <p id="s/e"></p>
+      <p id="s-e"></p>
     </div>
     </div>
 </body>
@@ -47,7 +47,7 @@ const apply = document.getElementById("apply");
 apply.addEventListener("click", () =>{
   const ip = document.getElementById("ip").value;
   const port = document.getElementById("port").value;
-  const p = document.getElementById("s/e")
+  const p = document.getElementById("s-e")
   window.pywebview.api.create_config(ip, port).then(result => {
     if (result == "succeful"){
       //zrob tu wyswietlanie succeful ladnie

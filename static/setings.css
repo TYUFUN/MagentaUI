@@ -51,3 +51,9 @@
     background-color:rgba(160, 45, 32, 0.8); 
     color: rgb(228, 21, 21);
 }
+#s-e{
+    font-size: 25px;
+    position: relative;
+    left: 30%;
+    margin-top: 40px;
+}
