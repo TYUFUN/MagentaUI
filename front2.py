@@ -1,8 +1,9 @@
 import webview
 from subprocess import Popen
-import platform
-if platform.system() == "Windows":
-    import os
+from platform import system
+import os
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent
 info =  [{'class': 'ram',
           'value': 
               {'availble_ram': 5.489540100097656,
@@ -30,14 +31,16 @@ class Api:
                 return a["value"]
         return {}
     def open_file(self):
-        if platform.system() == "Windows":
-            os.startfile("static") # type: ignore
+        if system() == "Windows":
+            os.startfile(BASE_DIR / "static") # type: ignore
         else:
-            Popen(["xdg-open", "static"]) 
+            Popen(["xdg-open", BASE_DIR / "static"]) 
     def create_config(self, ip:str, port:str) -> str:
         if not ip or not port:
-            return "error"           
-        with open("data1", "w", encoding="utf-8") as b: #in future pack all data to the bin
+            return "error"
+        if not os.path.exists(BASE_DIR / "bin"):
+            os.mkdir(BASE_DIR / "bin")        
+        with open(BASE_DIR / "bin/data1", "w", encoding="utf-8") as b: #in future pack all data to the bin
             b.write(f"IP={ip}\nport={port}")
         return "succeful"
 api = Api()
