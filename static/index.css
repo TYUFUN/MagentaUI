@@ -14,7 +14,7 @@
     height: 800px;
 }
 #p1,#p2,#p3{
-    width: 300px;
+    width: 300px; 
     height: 100px;
     white-space: nowrap;
 }
@@ -37,7 +37,7 @@ p{
 #ram-info{
     display: flex;
 }
-#chart{
+#ram-gauge{
     position: relative;
     top: 20%;
     right: 80%;

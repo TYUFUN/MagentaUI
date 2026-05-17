@@ -14,10 +14,40 @@
     background-color: rgba(255, 255, 255, 0.1);
     width: 300px;
     height: 110px;
-    margin: 0 auto;
+    margin: 0 auto; 
     margin-top: 200px;
 }
 #set input{
     margin-top: 20px;
     width: 150px;
+}
+#buttons{
+    font-size: 15px;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    margin-top: 50px;
+    background-color: rgba(255, 255, 255, 0.2);
+    position: relative !important;
+    left: 40% !important;
+}
+#apply{
+    background-color: rgb(44, 97, 61);
+    color: yellowgreen;
+}
+#apply:hover{
+    cursor: pointer;
+    filter: drop-shadow(0 0 20px rgba(30, 159, 58, 0.8));
+    background-color:rgba(33, 170, 85, 0.8); 
+    color: rgb(29, 250, 77);
+}
+#cancel{
+    background-color: rgba(121, 43, 19, 0.8);
+    color: rgb(202, 68, 16);
+}
+#cancel:hover{
+    cursor: pointer;
+    filter: drop-shadow(0 0 20px rgba(155, 43, 8, 0.8));
+    background-color:rgba(160, 45, 32, 0.8); 
+    color: rgb(228, 21, 21);
 }
