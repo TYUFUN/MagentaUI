@@ -8,7 +8,7 @@
     height: 100% !important;
 }
 /*front-end div section*/
-#diva1,#diva2,#diva3,#diva4{
+#diva1,#diva3,#diva4{
     justify-content: space-evenly;
     width: 1000px;
     height: 800px;
@@ -18,7 +18,7 @@
     height: 100px;
     white-space: nowrap;
 }
-#p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11{
+#p8,#p9,#p10,#p11{
     width: 150px;
 }
 #p12{
@@ -54,4 +54,18 @@ p{
     to {
         transform: rotate(360deg);
     }
+}
+#p4, #p5, #p6, #p7{
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 150px;
+    height: 150px;
+
+}
+#diva2{
+display: none;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  align-content: flex-start;
 }

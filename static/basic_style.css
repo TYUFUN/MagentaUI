@@ -31,9 +31,14 @@
             background-color: rgb(5, 46, 5);
             cursor: pointer;
             filter: drop-shadow(0 0 20px rgba(180, 35, 213, 0.8));
-            background-color:rgba(121, 25, 143, 0.8); 
-            color: rgb(20, 10, 20);
+            background-color:rgba(121, 25, 143, 0.8) !important; 
+            color: rgb(20, 10, 20) !important ;
         }
+button.active {
+  color: #e040fb;
+  border-bottom: 3px solid #e040fb;
+  background: rgba(224, 64, 251, 0.04);
+}   
            #menu{
             width: 100%;
             height: 50px;

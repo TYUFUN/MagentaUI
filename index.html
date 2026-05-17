@@ -51,16 +51,36 @@ const cont_ram = document.getElementById("diva1");
 const cont_cpu = document.getElementById("diva2");
 const cont_disk = document.getElementById("diva3");
 const cont_net = document.getElementById("diva4");
+    //func
+const ram = document.getElementById("ram");
+const cpu = document.getElementById("cpu");
+const disk = document.getElementById("disk");
+const net = document.getElementById("net");
+match = [ram, cpu, disk, net]
+match2 = [cont_cpu, cont_ram, cont_disk, cont_net]
+function set_active(btn){
+    match.forEach((answer, index) => {
+        if (answer == btn)
+            answer.classList.add("active");
+        else
+            answer.classList.remove("active");
+    });
+};
+function change_display (btn){
+    match2.forEach((answer, index) => {
+        if (answer == btn)
+            answer.style.display = "flex";
+        else
+            answer.style.display = "none";
+    })
+}
     //section ram
 const p1 = document.querySelector("#p1");
 const p2 = document.querySelector("#p2");
 const p3 = document.querySelector("#p3");
-const ram = document.getElementById("ram");
 ram.addEventListener("click", () => {
-    cont_net.style.display = "none";
-    cont_ram.style.display = "flex";
-    cont_cpu.style.display = "none";
-    cont_disk.style.display = "none";
+    set_active(ram)
+    change_display(cont_ram)
     window.pywebview.api.send_data("ram").then(data => {
         availble_ram = data["availble_ram"]
         p1.innerHTML = `availble_ram: ${availble_ram.toFixed(2)}Gb`;
@@ -119,25 +139,18 @@ const p4 = document.querySelector("#p4");
 const p5 = document.querySelector("#p5");
 const p6 = document.querySelector("#p6");
 const p7 = document.querySelector("#p7");
-const cpu = document.getElementById("cpu");
 cpu.addEventListener("click", () => {
     window.pywebview.api.send_data("cpu").then(data => {
-        cont_net.style.display = "none";
-        cont_ram.style.display = "none";
-        cont_cpu.style.display = "flex";
-        cont_disk.style.display = "none";
+        change_display(cont_cpu)
+        set_active(cpu)
         all_cpu = data["all_cpu"][0]
         p4.innerHTML = `
-            all_cpu: <br>
-            current: ${all_cpu.current.toFixed(1)}GHz <br>
-            max: ${all_cpu.max.toFixed(1)}GHz 
+            all_cpu: ${all_cpu.current.toFixed(1)}GHz <br>
         `;
-        one_cpu = data["one_cpu"]
+        one_cpu = data["one_cpu"] 
         p5.innerHTML = `
-            one_cpu: <br>
-            current: ${one_cpu.current.toFixed(1)}GHz <br>
-            max: ${one_cpu.max.toFixed(1)}GHz
-        `;
+            one_cpu:  ${one_cpu.current.toFixed(1)}GHz <br>
+        `; 
         cpu_used = data["cpu_used"]
         p6.innerHTML = `cpu_used: ${cpu_used.toFixed(1)}%`;
         cores = data["cores"]
@@ -149,13 +162,10 @@ const p8 = document.querySelector("#p8");
 const p9 = document.querySelector("#p9");
 const p10 = document.querySelector("#p10");
 const p11 = document.querySelector("#p11");
-const disk = document.getElementById("disk");
 disk.addEventListener("click", () => {
     window.pywebview.api.send_data("disk").then(data => {
-        cont_net.style.display = "none";
-        cont_ram.style.display = "none";
-        cont_cpu.style.display = "none";
-        cont_disk.style.display = "flex";
+        set_active(disk)
+        change_display(cont_disk)
         availble_disk = data["availble_disk"]
         p8.innerHTML = `avaible_disk: ${availble_disk.toFixed(2)}Gb`;
         disk_total = data["disk_total"]
@@ -168,14 +178,10 @@ disk.addEventListener("click", () => {
 });
 //section network
 const p12 = document.querySelector("#p12");
-const net = document.getElementById("net");
 net.addEventListener("click", () => {
     window.pywebview.api.send_data("network").then(data => {
-        cont_ram.style.display = "none";
-        cont_cpu.style.display = "none";
-        cont_disk.style.display = "none";
-        cont_net.style.display = "flex";
-        //
+        change_display(cont_net)
+        set_active(net)
         a = data["connections"]
         p12.innerHTML = `
             connections: <br>
