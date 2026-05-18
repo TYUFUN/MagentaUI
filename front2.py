@@ -25,6 +25,9 @@ info =  [{'class': 'ram',
          {'class': 'network',
           'value': {'connections': {'Ethernet 3': [True, 2, 1000, 1500, ''], 'Ethernet': [False, 2, 0, 1500, ''], 'Сетевое подключение Bluetooth': [False, 2, 3, 1500, ''], 'Loopback Pseudo-Interface 1': [True, 2, 1073, 1500, ''], 'Wi-Fi': [True, 2, 270, 1500, ''], 'Połączenie lokalne* 1': [False, 2, 0, 1500, ''], 'Połączenie lokalne* 2': [False, 2, 0, 1500, ''], 'Teredo Tunneling Pseudo-Interface': [True, 2, 0, 1472, '']}}}]
 # example input data
+def load_locale(selected:str) -> dict:
+    with open(BASE_DIR / f"locale/{selected}.json", "r", encoding="utf-8") as q:
+        return json.load(q)
 class Api:
     def send_data(self, want: str) -> dict:
         for a in info:
@@ -35,7 +38,7 @@ class Api:
         if system() == "Windows":
             os.startfile(BASE_DIR / "static") # type: ignore
         else:
-            Popen(["xdg-open", BASE_DIR / "static"]) 
+            Popen(["xdg-open", BASE_DIR / "static/styles"]) 
     def create_config(self, ip:str, port:str) -> str:
         if not ip or not port:
             return "error"
@@ -49,9 +52,21 @@ class Api:
             }
             json.dump(temp, b, indent=2)
         return "succeful"
+    def get_locales(self):
+        with open(BASE_DIR / "bin/data1", "r", encoding="utf-8") as c:
+            data = json.load(c)
+            if "lang" not in data:
+                return load_locale("en")
+            match data["lang"]:
+                case "ru":
+                    return load_locale("ru")
+                case "en":
+                    return load_locale("en")
+                case _:
+                    return load_locale("en")
 api = Api()
 webview.create_window('MagentaUI', 'index.html', width = 1000, height = 800,
     resizable=False,
     easy_drag=True,
     background_color="#000000", js_api=api) #html= для передачи переменной в вебвью
-webview.start()
+webview.start() #debug=True can help solve problems
