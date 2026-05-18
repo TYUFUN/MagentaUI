@@ -13,16 +13,25 @@
     <div id="fix_dsp"><a href="index.html"><button id="return"></button></a></div>
     </div>
     <div id="cont_basic">
-      <div id="set">
-        <label>Enter IPv4: </label><input type="text" placeholder="127.0.0.1" id="ip"><br>
-        <label>Enter port: </label><input type="text" placeholder="5500" id="port">
-      </div>
-      <div id="buttons">
-        <button id="apply">Apply</button>
-        <button id="cancel">Cancel</button>
-      </div>
+        <fieldset class="set">
+          <legend>Server</legend>
+        <label>IPv4: </label><input type="text" placeholder="127.0.0.1" id="ip"><br>
+        <label>Port: </label><input type="text" placeholder="5500" id="port">
+    </fieldset>
+        <!-- <div id="buttons">
+          <button id="apply">Apply</button>
+          <button id="cancel">Cancel</button>
+        </div> -->
+        <fieldset class="set">
+          <legend>Language</legend>
+          <label>Select Language: </label>
+          <select id="choose">
+            <option value="English">English</option>
+            <option value="Russian">Русский</option>
+            <option value="Polish">Polski</option>
+          </select>
+        </fieldset>
       <p id="s-e"></p>
-    </div>
     </div>
 </body>
 <script>
@@ -42,7 +51,7 @@ const css_cfg = document.getElementById("css_cfg");
 css_cfg.addEventListener("click", () => {
   window.pywebview.api.open_file()
 });
-const apply = document.getElementById("apply");
+/*const apply = document.getElementById("apply");
 
 apply.addEventListener("click", () =>{
   const ip = document.getElementById("ip").value;
@@ -58,6 +67,6 @@ apply.addEventListener("click", () =>{
       p.innerHTML = 'Sprawdź ponownie IP i port';
     }
   });
-});
+});*/
 </script>
 </html>

@@ -3,6 +3,7 @@ from subprocess import Popen
 from platform import system
 import os
 from pathlib import Path
+import json
 BASE_DIR = Path(__file__).resolve().parent
 info =  [{'class': 'ram',
           'value': 
@@ -40,8 +41,13 @@ class Api:
             return "error"
         if not os.path.exists(BASE_DIR / "bin"):
             os.mkdir(BASE_DIR / "bin")        
-        with open(BASE_DIR / "bin/data1", "w", encoding="utf-8") as b: #in future pack all data to the bin
-            b.write(f"IP={ip}\nport={port}")
+        with open(BASE_DIR / "bin/data1", "w", encoding="utf-8") as b: 
+            # b.write(f"IP={ip}\nport={port}")
+            temp = {
+                "ip": ip,
+                "port": port,
+            }
+            json.dump(temp, b, indent=2)
         return "succeful"
 api = Api()
 webview.create_window('MagentaUI', 'index.html', width = 1000, height = 800,
