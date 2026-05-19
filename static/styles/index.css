@@ -99,13 +99,12 @@ p{
 #p4 { left: 80px; }
 #p5 { left: 350px; }
 #p7 { left: 620px; }
-/* Прозрачненький верхний текст внутри карточки */
 #diva2 small {
     display: block;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.5); /* Белый на 40% прозрачности */
+    color: rgba(255, 255, 255, 0.5);
     margin-bottom: 4px;
 }
 #p4:hover, #p5:hover, #p7:hover {
@@ -118,25 +117,20 @@ p{
 #diva2 small:hover{
     font-size: 20px;
 }
-/* Крупные цифры внутри карточки */
 #diva2 span {
     font-size: 40px;
     font-weight: bold;
     display: block;
 }
-
-/* Накладываем круг и проценты друг на друга по одинаковым координатам */
 #cpu-gauge, #p6 {
     position: absolute;
     top: 300px;
-    left: 350px; /* Подвинь влево/вправо, если нужно отцентровать по экрану */
+    left: 350px;
 }
-
-/* Стили текста с процентами ровно по центру круга */
 #p6 {
-    line-height: 120px; /* Выравнивает текст строго по вертикали внутри 120px */
+    line-height: 120px;
     text-align: center;
     font-size: 22px;
     font-weight: bold;
-    color: #e040fb; /* Неоновый фиолетовый */
+    color: #e040fb;
 }

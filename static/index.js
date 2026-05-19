@@ -100,19 +100,11 @@ cpu.addEventListener("click", () => {
     window.pywebview.api.send_data("cpu").then(data => {
         change_display(cont_cpu);
         set_active(cpu);
-        
-        // Записываем только цифры внутрь тега span каждой карточки
         document.querySelector("#p4 span").innerHTML = `${data["cpu_temp"]}°C`;
         document.querySelector("#p5 span").innerHTML = `${(data["one_cpu"].current / 1000).toFixed(1)} GHz`;       
         document.querySelector("#p7 span").innerHTML = data["cores"];
-        
-        // Проценты в центр круга
         p6.innerHTML = `${data["cpu_used"].toFixed(1)}%`;
-        
-        // Название процессора
         p7_5.innerHTML = data["cpu_type"];
-        
-        // Рисуем ободок
         drawGauge("cpu-gauge", data["cpu_used"], 100, "%");
     });
 });
