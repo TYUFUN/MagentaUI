@@ -28,7 +28,7 @@
 p{
     display: block;
     font-size: 150%;
-    text-shadow: 10px 10px 8px black;
+    /* text-shadow: 4px 4px 2px black; */
     text-align: center;
 }
 #diva1 {
@@ -56,10 +56,11 @@ p{
     }
 }
 #p4, #p5, #p6, #p7{
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    width: 150px;
-    height: 150px;
+    background: rgba(255, 255, 255, 0.05); /* Размытый белый фон */
+    backdrop-filter: blur(10px);          /* Эффект матового стекла */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая светлая рамка */
+    border-radius: 12px;                  /* Скругленные углы */
+    padding: 20px;
 
 }
 #diva2{

@@ -48,7 +48,7 @@ ram.addEventListener("click", () => {
         p3.innerHTML = `ram_percent: ${ram_percent.toFixed(1)}%`;
 
 
-        drawGauge("ram-gauge", data.availble_ram, 16, "GB");
+        drawGauge("ram-gauge", data.availble_ram, data["total_ram"], "GB");
     });
 });
 
@@ -98,6 +98,7 @@ const p5 = document.querySelector("#p5");
 const p6 = document.querySelector("#p6");
 const p7 = document.querySelector("#p7");
 const p7_5 = document.querySelector("#p7_5");
+const cpu_gauge = document.querySelector("#cpu-gauge");
 cpu.addEventListener("click", () => {
     window.pywebview.api.send_data("cpu").then(data => {
         change_display(cont_cpu)
@@ -106,13 +107,14 @@ cpu.addEventListener("click", () => {
         p4.innerHTML = `cpu temperature: ${data["cpu_temp"]}°C`
         one_cpu = data["one_cpu"] 
         p5.innerHTML = `
-            one_cpu: ${one_cpu.current.toFixed(1)}GHz <br>
+            one_cpu: ${(one_cpu.current / 1000).toFixed(1)}GHz <br>
         `; 
         cpu_used = data["cpu_used"]
         p6.innerHTML = `cpu_used: ${cpu_used.toFixed(1)}%`;
         cores = data["cores"]
         p7.innerHTML = `cores: ${cores}`;
         p7_5.innerHTML = `cpu type: ${data["cpu_type"]}`;
+        drawGauge("cpu-gauge", cpu_used, 100, "%");
     });
 });
 //section disk
