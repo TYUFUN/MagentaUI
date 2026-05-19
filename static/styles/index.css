@@ -96,6 +96,11 @@ p{
     width: 520px;      
     height: 340px;
 }
+#cpu-gauge:hover{
+    border-color: #e040fb;
+    background: rgba(224, 64, 251, 0.1);
+    filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.8));
+}
 #p4 { left: 80px; }
 #p5 { left: 350px; }
 #p7 { left: 620px; }
@@ -124,12 +129,12 @@ p{
 }
 #cpu-gauge, #p6 {
     position: absolute;
-    top: 300px;
+    top: 220px;
     left: 350px;
 }
 #p6 {
-    top: 425px;
-    left: 480px;
+    top: 350px;
+    left: 475px;
     font-size: 40px;
     line-height: 120px;
     text-align: center;
