@@ -63,17 +63,20 @@ class Api:
             json.dump(temp, b, indent=2)
         return "succeful"
     def get_locales(self):
-        with open(BASE_DIR / "bin/data1", "r", encoding="utf-8") as c:
-            data = json.load(c)
-            if "lang" not in data:
-                return load_locale("en")
-            match data["lang"]:
-                case "ru":
-                    return load_locale("ru")
-                case "en":
+        try:
+            with open(BASE_DIR / "bin/data1", "r", encoding="utf-8") as c:
+                data = json.load(c)
+                if "lang" not in data:
                     return load_locale("en")
-                case _:
-                    return load_locale("en")
+                match data["lang"]:
+                    case "ru":
+                        return load_locale("ru")
+                    case "en":
+                        return load_locale("en")
+                    case _:
+                        return load_locale("en")
+        except Exception as e:
+            return load_locale("en")
 api = Api()
 webview.create_window('MagentaUI', 'index.html', width = 1000, height = 800,
     resizable=False,
