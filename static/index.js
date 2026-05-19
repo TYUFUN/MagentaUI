@@ -48,11 +48,11 @@ ram.addEventListener("click", () => {
         p3.innerHTML = `ram_percent: ${ram_percent.toFixed(1)}%`;
 
 
-        drawGauge("ram-gauge", data.availble_ram, data["total_ram"], "GB");
+        drawGauge1("ram-gauge1", data.availble_ram, data["total_ram"], "GB");
     });
 });
 
-function drawGauge(svgId, used, total, unit) {
+function drawGauge1(svgId, used, total, unit) {
     const percent = (used / total) * 100;  
     const width = 100, height = 120, radius = 50;
     const tau = 2 * Math.PI;
@@ -105,9 +105,49 @@ cpu.addEventListener("click", () => {
         document.querySelector("#p7 span").innerHTML = data["cores"];
         p6.innerHTML = `${data["cpu_used"].toFixed(1)}%`;
         p7_5.innerHTML = data["cpu_type"];
-        drawGauge("cpu-gauge", data["cpu_used"], 100, "%");
+        drawGauge2("cpu-gauge", data["cpu_used"], 100, "%");
     });
 });
+function drawGauge2(svgId, used, total, unit) {
+    const percent = (used / total) * 100;  
+    const width = 500, height = 375, radius = 180;
+    const tau = 2 * Math.PI;
+
+    d3.select(`#${svgId}`).selectAll("*").remove();
+
+    const svg = d3.select(`#${svgId}`)
+        .attr("width", width)
+        .attr("height", height);
+
+    const g = svg.append("g")
+        .attr("transform", `translate(${width/2}, ${height/2})`);
+
+    const arc = d3.arc()
+        .innerRadius(radius - 10)
+        .outerRadius(radius)
+        .startAngle(-Math.PI * 0.75)
+        .endAngle(Math.PI * 0.75);
+
+    g.append("path").attr("d", arc()).attr("fill", "#333");
+
+    const fillArc = d3.arc()
+        .innerRadius(radius - 10)
+        .outerRadius(radius)
+        .startAngle(-Math.PI * 0.75)
+        .endAngle(-Math.PI * 0.75 + (percent / 100) * tau * 0.75);
+
+    const color = percent > 75 ? "#E24B4A" : percent > 45 ? "#EF9F27" : "#9B59B6";
+
+    g.append("path").attr("d", fillArc()).attr("fill", color);
+
+    // g.append("text")
+    //     .attr("text-anchor", "middle")
+    //     .attr("dy", "0.3em")
+    //     .attr("font-size", "16px")
+    //     .attr("fill", "#ff0909")
+    //     .text(`${used.toFixed(1)} ${unit}`);
+}
+p6_capitalize = p6.style.fontSize = "100px";
 //section disk
 const p8 = document.querySelector("#p8");
 const p9 = document.querySelector("#p9");
