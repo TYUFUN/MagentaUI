@@ -55,19 +55,88 @@ p{
         transform: rotate(360deg);
     }
 }
-#p4, #p5, #p6, #p7{
-    background: rgba(255, 255, 255, 0.05); /* Размытый белый фон */
-    backdrop-filter: blur(10px);          /* Эффект матового стекла */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая светлая рамка */
-    border-radius: 12px;                  /* Скругленные углы */
-    padding: 20px;
-
+#diva2 {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
 }
-#diva2{
-display: none;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding: 24px;
-  width: 100%;
-  align-content: flex-start;
+#p7_5 {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: block ;
+    font-size: 20px;
+    font-weight: bold;
+}
+#p4, #p5, #p7 {
+    position: absolute;
+    font-size: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    top: 80px;
+    width: 250px;      
+    height: 100px;
+}
+#cpu-gauge {
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    top: 80px;
+    width: 520px;      
+    height: 340px;
+}
+#p4 { left: 80px; }
+#p5 { left: 350px; }
+#p7 { left: 620px; }
+/* Прозрачненький верхний текст внутри карточки */
+#diva2 small {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5); /* Белый на 40% прозрачности */
+    margin-bottom: 4px;
+}
+#p4:hover, #p5:hover, #p7:hover {
+    color: #e040fb;
+    border-color: #e040fb;
+    background: rgba(224, 64, 251, 0.1);
+    filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.8));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+#diva2 small:hover{
+    font-size: 20px;
+}
+/* Крупные цифры внутри карточки */
+#diva2 span {
+    font-size: 40px;
+    font-weight: bold;
+    display: block;
+}
+
+/* Накладываем круг и проценты друг на друга по одинаковым координатам */
+#cpu-gauge, #p6 {
+    position: absolute;
+    top: 300px;
+    left: 350px; /* Подвинь влево/вправо, если нужно отцентровать по экрану */
+}
+
+/* Стили текста с процентами ровно по центру круга */
+#p6 {
+    line-height: 120px; /* Выравнивает текст строго по вертикали внутри 120px */
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #e040fb; /* Неоновый фиолетовый */
 }

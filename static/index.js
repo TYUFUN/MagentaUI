@@ -84,37 +84,36 @@ function drawGauge(svgId, used, total, unit) {
 
     g.append("path").attr("d", fillArc()).attr("fill", color);
 
-    g.append("text")
-        .attr("text-anchor", "middle")
-        .attr("dy", "0.3em")
-        .attr("font-size", "16px")
-        .attr("fill", "#ff0909")
-        .text(`${used.toFixed(1)} ${unit}`);
+    // g.append("text")
+    //     .attr("text-anchor", "middle")
+    //     .attr("dy", "0.3em")
+    //     .attr("font-size", "16px")
+    //     .attr("fill", "#ff0909")
+    //     .text(`${used.toFixed(1)} ${unit}`);
 }
 
 //section cpu
-const p4 = document.querySelector("#p4");
-const p5 = document.querySelector("#p5");
 const p6 = document.querySelector("#p6");
-const p7 = document.querySelector("#p7");
 const p7_5 = document.querySelector("#p7_5");
 const cpu_gauge = document.querySelector("#cpu-gauge");
 cpu.addEventListener("click", () => {
     window.pywebview.api.send_data("cpu").then(data => {
-        change_display(cont_cpu)
-        set_active(cpu)
-        console.log(data)
-        p4.innerHTML = `cpu temperature: ${data["cpu_temp"]}°C`
-        one_cpu = data["one_cpu"] 
-        p5.innerHTML = `
-            one_cpu: ${(one_cpu.current / 1000).toFixed(1)}GHz <br>
-        `; 
-        cpu_used = data["cpu_used"]
-        p6.innerHTML = `cpu_used: ${cpu_used.toFixed(1)}%`;
-        cores = data["cores"]
-        p7.innerHTML = `cores: ${cores}`;
-        p7_5.innerHTML = `cpu type: ${data["cpu_type"]}`;
-        drawGauge("cpu-gauge", cpu_used, 100, "%");
+        change_display(cont_cpu);
+        set_active(cpu);
+        
+        // Записываем только цифры внутрь тега span каждой карточки
+        document.querySelector("#p4 span").innerHTML = `${data["cpu_temp"]}°C`;
+        document.querySelector("#p5 span").innerHTML = `${(data["one_cpu"].current / 1000).toFixed(1)} GHz`;       
+        document.querySelector("#p7 span").innerHTML = data["cores"];
+        
+        // Проценты в центр круга
+        p6.innerHTML = `${data["cpu_used"].toFixed(1)}%`;
+        
+        // Название процессора
+        p7_5.innerHTML = data["cpu_type"];
+        
+        // Рисуем ободок
+        drawGauge("cpu-gauge", data["cpu_used"], 100, "%");
     });
 });
 //section disk
