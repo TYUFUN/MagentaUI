@@ -5,26 +5,36 @@ import os
 from pathlib import Path
 import json
 BASE_DIR = Path(__file__).resolve().parent
-info =  [{'class': 'ram',
-          'value': 
-              {'availble_ram': 5.489540100097656,
-               'used_ram': 8.36599349975586,
-               'ram_percent': 60.4}},
-         {'class': 'disk',
-          'value':
-              {'availble_disk': 54.70027542114258,
-               'disk_total': 237.41112899780273,
-               'disk_used': 182.71085357666016,
-               'disk_percent': 77.0}},
-         {'class': 'cpu',
-          'value':
-              {'all_cpu': [{'current': 3301.0, 'min': 0.0, 'max': 3301.0}], 
-                'one_cpu': {'current': 3301.0, 'min': 0.0, 'max': 3301.0},
-               'cpu_used': 2.9,
-               'cores': 8}},
-         {'class': 'network',
-          'value': {'connections': {'Ethernet 3': [True, 2, 1000, 1500, ''], 'Ethernet': [False, 2, 0, 1500, ''], 'Сетевое подключение Bluetooth': [False, 2, 3, 1500, ''], 'Loopback Pseudo-Interface 1': [True, 2, 1073, 1500, ''], 'Wi-Fi': [True, 2, 270, 1500, ''], 'Połączenie lokalne* 1': [False, 2, 0, 1500, ''], 'Połączenie lokalne* 2': [False, 2, 0, 1500, ''], 'Teredo Tunneling Pseudo-Interface': [True, 2, 0, 1472, '']}}}]
-# example input data
+info = [
+    {'class': 'ram',
+     'value': 
+            {'availble_ram': 7.5337982177734375,
+            'total_ram': 13.509342193603516,
+            'ram_percent': 44.2}},
+    {'class': 'disk',
+     'value': 
+            {'availble_disk': 126.42206192016602,
+            'disk_total': 162.98172760009766,
+            'disk_percent': 18.2}},
+    {'class': 'cpu',
+     'value':
+            {'cpu_used': 14.0,
+            'one_cpu': {'current': 2274.0077499999998, 'min': 1108.0, 'max': 4280.0},
+            'cores': 8,
+            'cpu_temp': 59.9,
+            'cpu_type': 'AMD Ryzen 5 5500H with Radeon Graphics'}},
+    {'class': 'os',
+     'value':
+            {'name': 'Linux',
+            'version': '#1 SMP PREEMPT_DYNAMIC Debian 6.12.85-1 (2026-04-30)',
+            'machine': 'x86_64',
+            'python': '3.13.5',
+            'load_avg': (1.38623046875, 1.4521484375, 1.41015625)}},
+    {'class': 'network',
+        'value':
+            {'ports': [631, 1716, 8858, 42193, 56621, 57998],
+            'host': 'debian'}}]
+#example data
 def load_locale(selected:str) -> dict:
     with open(BASE_DIR / f"locale/{selected}.json", "r", encoding="utf-8") as q:
         return json.load(q)
