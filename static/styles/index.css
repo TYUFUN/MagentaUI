@@ -65,7 +65,7 @@ p{
 #p7_5 {
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 135px;
     display: block ;
     font-size: 20px;
     font-weight: bold;
@@ -111,6 +111,7 @@ p{
     letter-spacing: 1px;
     color: rgba(255, 255, 255, 0.5);
     margin-bottom: 4px;
+    transition: 0.5s;
 }
 #p4:hover, #p5:hover, #p7:hover {
     color: #e040fb;
@@ -129,7 +130,7 @@ p{
 }
 #cpu-gauge1, #p6 {
     position: absolute;
-    top: 220px;
+    top: 200px;
     left: 350px;
 }
 #p6 {
@@ -150,8 +151,21 @@ p{
     box-sizing: border-box;
     padding: 10px;
     position: relative;
-    top: 220px;
-    left: 20px;
-    width: 300px;      
+    top: 200px;
+    left: 80px;
+    width: 250px;      
     height: 340px;
+}
+#cpu-history1{
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    position: absolute;
+    top: 560px;
+    left: 80px;
+    width: 790px;      
+    height: 170px;
 }

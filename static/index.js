@@ -107,6 +107,10 @@ cpu.addEventListener("click", () => {
         p7_5.innerHTML = data["cpu_type"];
         drawGauge2("cpu-gauge1", data["cpu_used"], 100, "%");
         drawRect1("cpu-rect1", data["cpu_temp"])
+        const cpuHistory = createCpuHistory("cpu-history1", data["cpu_used"], 100, "%");
+        for (let i = 0; i < 100; i++) {
+            cpuHistory.push(2 * Math.random() * 10);
+        } // tutorial how to add data to cpu history
     });
 });
 function drawGauge2(svgId, used, total, unit) {
@@ -140,13 +144,6 @@ function drawGauge2(svgId, used, total, unit) {
     const color = percent > 75 ? "#E24B4A" : percent > 45 ? "#EF9F27" : "#9B59B6";
 
     g.append("path").attr("d", fillArc()).attr("fill", color);
-
-    // g.append("text")
-    //     .attr("text-anchor", "middle")
-    //     .attr("dy", "0.3em")
-    //     .attr("font-size", "16px")
-    //     .attr("fill", "#ff0909")
-    //     .text(`${used.toFixed(1)} ${unit}`);
 }
 p6_capitalize = p6.style.fontSize = "100px";
 function drawRect1(svgId, cpu_temp) {
@@ -194,6 +191,80 @@ function drawRect1(svgId, cpu_temp) {
         .attr("fill", "#e040fb")
         .text(`${t}°`);
     });
+}
+function createCpuHistory(containerId, used, total, unit) {
+    const history = Array(60).fill(0);
+    const margin = {top: 10, right: 16, bottom: 10, left: 40};
+
+    d3.select(`#${containerId}`).selectAll("*").remove();
+
+    const container = document.getElementById(containerId);
+    const width = container.offsetWidth || 770;
+    const height = 150;
+    const w = width - margin.left - margin.right;
+    const h = height - margin.top - margin.bottom;
+
+    const svg = d3.select(`#${containerId}`)
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    const g = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const defs = svg.append("defs");
+    const grad = defs.append("linearGradient")
+        .attr("id", "memGrad")
+        .attr("x1", "0").attr("x2", "0")
+        .attr("y1", "0").attr("y2", "1");
+    grad.append("stop").attr("offset", "0%").attr("stop-color", "#d63af9").attr("stop-opacity", 0.4);
+    grad.append("stop").attr("offset", "100%").attr("stop-color", "#d63af9").attr("stop-opacity", 0.02);
+
+    [0, 1, 2, 3, 4].map(i => parseFloat(((total / 4) * i).toFixed(1))).forEach(val => {
+        const y = h - (val / total) * h;
+        g.append("line")
+            .attr("x1", 0).attr("x2", w)
+            .attr("y1", y).attr("y2", y)
+            .attr("stroke", "rgba(255,255,255,0.08)");
+        g.append("text")
+            .attr("x", -8).attr("y", y + 4)
+            .attr("text-anchor", "end")
+            .attr("fill", "rgba(255,255,255,0.35)")
+            .attr("font-size", "11px")
+            .text(val === 0 ? "0 %" : `${String(val).replace(".", ",")} ${unit}`);
+    });
+
+    const areaPath = g.append("path").attr("fill", "url(#memGrad)");
+    const linePath = g.append("path").attr("fill", "none").attr("stroke", "#d63af9").attr("stroke-width", 1.5);
+
+    function buildPath(data) {
+        const pts = data.map((v, i) => [(i / (data.length - 1)) * w, h - (v / total) * h]);
+        let d = `M ${pts[0][0]} ${pts[0][1]}`;
+        for (let i = 1; i < pts.length - 1; i++) {
+            const cx = (pts[i][0] + pts[i + 1][0]) / 2;
+            const cy = (pts[i][1] + pts[i + 1][1]) / 2;
+            d += ` Q ${pts[i][0]} ${pts[i][1]} ${cx} ${cy}`;
+        }
+        d += ` L ${pts[pts.length - 1][0]} ${pts[pts.length - 1][1]}`;
+        return {line: d, area: d + ` L ${pts[pts.length - 1][0]} ${h} L ${pts[0][0]} ${h} Z`};
+    }
+
+    function render() {
+        const {line, area} = buildPath(history);
+        linePath.attr("d", line);
+        areaPath.attr("d", area);
+    }
+
+    history[history.length - 1] = used;
+    render();
+
+    return {
+        push(value) {
+            history.shift();
+            history.push(Math.min(value, total));
+            render();
+        }
+    };
 }
 //section disk
 const p8 = document.querySelector("#p8");
