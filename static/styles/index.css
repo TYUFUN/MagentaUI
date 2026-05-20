@@ -84,7 +84,7 @@ p{
     width: 250px;      
     height: 100px;
 }
-#cpu-gauge {
+#cpu-gauge1 {
 
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
@@ -96,7 +96,7 @@ p{
     width: 520px;      
     height: 340px;
 }
-#cpu-gauge:hover{
+#cpu-gauge1:hover{
     border-color: #e040fb;
     background: rgba(224, 64, 251, 0.1);
     filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.8));
@@ -127,7 +127,7 @@ p{
     font-weight: bold;
     display: block;
 }
-#cpu-gauge, #p6 {
+#cpu-gauge1, #p6 {
     position: absolute;
     top: 220px;
     left: 350px;
@@ -141,4 +141,17 @@ p{
     font-size: 22px;
     font-weight: bold;
     color: #e040fb;
+}
+#cpu-rect1{
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+    top: 220px;
+    left: 20px;
+    width: 300px;      
+    height: 340px;
 }

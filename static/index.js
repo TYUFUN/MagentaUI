@@ -105,7 +105,8 @@ cpu.addEventListener("click", () => {
         document.querySelector("#p7 span").innerHTML = data["cores"];
         p6.innerHTML = `${data["cpu_used"].toFixed(1)}%`;
         p7_5.innerHTML = data["cpu_type"];
-        drawGauge2("cpu-gauge", data["cpu_used"], 100, "%");
+        drawGauge2("cpu-gauge1", data["cpu_used"], 100, "%");
+        drawRect1("cpu-rect1", data["cpu_temp"])
     });
 });
 function drawGauge2(svgId, used, total, unit) {
@@ -148,6 +149,52 @@ function drawGauge2(svgId, used, total, unit) {
     //     .text(`${used.toFixed(1)} ${unit}`);
 }
 p6_capitalize = p6.style.fontSize = "100px";
+function drawRect1(svgId, cpu_temp) {
+    const width = 100, height = 300;
+    const maxTemp = 100;
+    d3.select(`#${svgId}`).selectAll("*").remove();
+
+    const svg = d3.select(`#${svgId}`)
+        .attr("width", width + 60) 
+        .attr("height", height);
+
+    const defs = svg.append("defs");
+    const gradient = defs.append("linearGradient")
+        .attr("id", "tempGradient")
+        .attr("x1", "0%").attr("x2", "100%");
+    gradient.append("stop").attr("offset", "0%").attr("stop-color", "#9B59B6");
+    gradient.append("stop").attr("offset", "50%").attr("stop-color", "#EF9F27");
+    gradient.append("stop").attr("offset", "100%").attr("stop-color", "#E24B4A");
+    
+    svg.append("rect")
+        .attr("width", (cpu_temp / maxTemp) * width)
+        .attr("height", height)
+        .attr("rx", 6)
+        .attr("fill", "url(#tempGradient)");
+    
+    const temps = [20, 40, 60, 80, 100];
+
+    temps.forEach(t => {
+        const pad = 10;
+        const y = pad + (height - pad) - (t / maxTemp) * (height - pad);
+
+    svg.append("line")
+        .attr("x1", 0)
+        .attr("x2", width)
+        .attr("y1", y)
+        .attr("y2", y)
+        .attr("stroke", "white")
+        .attr("stroke-width", 0.5)
+        .attr("opacity", 0.4);
+
+    svg.append("text")
+        .attr("x", width + 5)
+        .attr("y", y + 3)
+        .attr("font-size", "18px")
+        .attr("fill", "#e040fb")
+        .text(`${t}°`);
+    });
+}
 //section disk
 const p8 = document.querySelector("#p8");
 const p9 = document.querySelector("#p9");
