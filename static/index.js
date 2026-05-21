@@ -145,7 +145,7 @@ function drawGauge2(svgId, used, total, unit) {
 
     g.append("path").attr("d", fillArc()).attr("fill", color);
 }
-p6_capitalize = p6.style.fontSize = "100px";
+const p6_capitalize = p6.style.fontSize = "100px";
 function drawRect1(svgId, cpu_temp) {
     const width = 100, height = 300;
     const maxTemp = 100;
@@ -211,6 +211,7 @@ function drawRect1(svgId, cpu_temp) {
         .attr("font-weight", "bold")
         .text(`${cpu_temp}°`);
 }
+
 function createCpuHistory(containerId, used, total, unit) {
     const history = Array(60).fill(0);
     const margin = {top: 10, right: 16, bottom: 10, left: 40};
