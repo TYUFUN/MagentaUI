@@ -55,12 +55,23 @@ p{
         transform: rotate(360deg);
     }
 }
+
+/*CPU*/
+
 #diva2 {
     display: none;
     position: relative;
     width: 100%;
     height: 100%;
     color: #ffffff;
+}
+#diva2 small:hover{
+    font-size: 20px;
+}
+#diva2 span {
+    font-size: 40px;
+    font-weight: bold;
+    display: block;
 }
 #p7_5 {
     position: absolute;
@@ -84,23 +95,6 @@ p{
     width: 250px;      
     height: 100px;
 }
-#cpu-gauge1 {
-
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    box-sizing: border-box;
-    padding: 10px;
-    top: 80px;
-    width: 520px;      
-    height: 340px;
-}
-#cpu-gauge1:hover{
-    border-color: #e040fb;
-    background: rgba(224, 64, 251, 0.1);
-    filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.8));
-}
 #p4 { left: 80px; }
 #p5 { left: 350px; }
 #p7 { left: 620px; }
@@ -120,13 +114,22 @@ p{
     filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.8));
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
-#diva2 small:hover{
-    font-size: 20px;
+#cpu-gauge1 {
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    top: 80px;
+    width: 520px;      
+    height: 340px;
 }
-#diva2 span {
-    font-size: 40px;
-    font-weight: bold;
-    display: block;
+#cpu-gauge1:hover{
+    border-color: #e040fb;
+    background: rgba(224, 64, 251, 0.1);
+    filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.8));
 }
 #cpu-gauge1, #p6 {
     position: absolute;
@@ -141,7 +144,7 @@ p{
     text-align: center;
     font-size: 22px;
     font-weight: bold;
-    color: #e040fb;
+    color: #c725e4;
 }
 #cpu-rect1{
     background: rgba(255, 255, 255, 0.05);
@@ -155,6 +158,11 @@ p{
     left: 80px;
     width: 250px;      
     height: 340px;
+}
+#cpu-rect1:hover{
+    border-color: #e040fb;
+    background: rgba(224, 64, 251, 0.1);
+    filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.6));
 }
 #cpu-history1{
     background: rgba(255, 255, 255, 0.05);
