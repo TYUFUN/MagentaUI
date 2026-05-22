@@ -15,6 +15,12 @@
     <div id="cont_basic">
         <fieldset class="set">
           <legend>Server</legend>
+          <label id="cn_label">Connection method: 
+          <select id="method">
+            <option value="lan">LAN</option>
+            <option value="wan_self">WAN self-hosted</option>
+            <option value="wan_relay">WAN relay</option>
+          </select></label><br>
         <label>IPv4: </label><input type="text" placeholder="127.0.0.1" id="ip"><br>
         <label>Port: </label><input type="text" placeholder="5500" id="port">
     </fieldset>

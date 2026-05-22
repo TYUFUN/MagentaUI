@@ -13,16 +13,28 @@
     font-size: 20px;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.1);
-    width: 95%;
-    height: 110px;
+    border-radius: 12px;
+    min-width: 600px;
+    min-height: 120px;
+    width: fit-content;
+    height: fit-content;
     margin: 0 auto; 
     margin-top: 20px;
+    padding: 15px;
 }
-.set input{
+.set:hover{
+    border: 1px solid #e040fb;
+}
+#cn_label{
+    position: relative;
+    right: 75px;
+}
+.set input, .set select{
     margin-top: 20px;
     width: 150px;
 }
-#ip{
+.set select{
+    width: 160px;
     margin-top: 10px !important;
 }
 #buttons{
