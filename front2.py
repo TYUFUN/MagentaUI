@@ -8,12 +8,12 @@ BASE_DIR = Path(__file__).resolve().parent
 info = [
     {'class': 'ram',
      'value': 
-            {'availble_ram': 7.5337982177734375,
+            {'used_ram': 7.5337982177734375,
             'total_ram': 13.509342193603516,
             'ram_percent': 44.2}},
     {'class': 'disk',
      'value': 
-            {'availble_disk': 126.42206192016602,
+            {'used_disk': 30.42206192016602,
             'disk_total': 162.98172760009766,
             'disk_percent': 18.2}},
     {'class': 'cpu',
@@ -49,18 +49,9 @@ class Api:
             os.startfile(BASE_DIR / "static") # type: ignore
         else:
             Popen(["xdg-open", BASE_DIR / "static/styles"]) 
-    def create_config(self, ip:str, port:str) -> str:
-        if not ip or not port:
-            return "error"
-        if not os.path.exists(BASE_DIR / "bin"):
-            os.mkdir(BASE_DIR / "bin")        
-        with open(BASE_DIR / "bin/data1", "w", encoding="utf-8") as b: 
-            # b.write(f"IP={ip}\nport={port}")
-            temp = {
-                "ip": ip,
-                "port": port,
-            }
-            json.dump(temp, b, indent=2)
+    def create_config(self, data:dict):
+        with open(BASE_DIR / "bin/data1", "w", encoding="utf-8") as c:
+            json.dump(data, c, indent=4)
         return "succeful"
     def get_locales(self):
         try:

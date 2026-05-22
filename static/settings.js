@@ -31,3 +31,20 @@ apply.addEventListener("click", () =>{
     }
   });
 });*/
+// test.addEventListener("click", () => {
+window.addEventListener('pywebviewready', function() {
+  const ip = document.getElementById("ip");
+  const port = document.getElementById("port");
+  const language = document.getElementById("choose").value = "Russian"; //example of changing select value manually
+  const connect = document.getElementById("method");
+  port.value = language.value ; // example of changing input value manually
+  send = {
+    "ip": ip,
+    "port": port.value,
+    "lang": language,
+    "method": connect
+  }
+  window.pywebview.api.create_config(send).then(config => {
+
+  });
+});

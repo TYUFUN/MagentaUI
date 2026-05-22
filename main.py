@@ -84,11 +84,11 @@ def get_open_ports():
 info2 = [
         {
         "class": "ram", "value":
-        {"availble_ram": fix(s.available),
+        {"used_ram": fix(s.used),
          "total_ram": fix(s.total),
          "ram_percent": s.percent}},
         {"class": "disk", "value": 
-        {"availble_disk": fix(d.free),
+        {"used_disk": fix(d.used),
          "disk_total": fix(d.total),
          "disk_percent": d.percent}},
         {"class": "cpu", "value":

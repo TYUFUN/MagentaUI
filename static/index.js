@@ -38,14 +38,14 @@ ram.addEventListener("click", () => {
     set_active(ram)
     change_display(cont_ram)
     window.pywebview.api.send_data("ram").then(data => {
-        availble_ram = data["availble_ram"]
-        document.querySelector("#p1 span").innerHTML = `${availble_ram.toFixed(2)}Gb`;
+        used_ram = data["used_ram"]
+        document.querySelector("#p1 span").innerHTML = `${used_ram.toFixed(2)}Gb`;
         document.querySelector("#p2 span").innerHTML = `${data["total_ram"].toFixed(2)}Gb`;
         ram_percent = data["ram_percent"]
         document.querySelector("#p3 span").innerHTML = `${ram_percent.toFixed(1)}%`;
 
 
-        drawGauge1("ram-gauge1", data.availble_ram, data["total_ram"], "GB");
+        drawGauge1("ram-gauge1", data.used_ram, data["total_ram"], "GB");
     });
 });
 
@@ -292,11 +292,11 @@ disk.addEventListener("click", () => {
     window.pywebview.api.send_data("disk").then(data => {
         set_active(disk)
         change_display(cont_disk)
-        availble_disk = data["availble_disk"]
-        p8.innerHTML = `avaible_disk: ${availble_disk.toFixed(2)}Gb`;
+        used_disk = data["used_disk"]
+        p8.innerHTML = `used_disk: ${used_disk.toFixed(2)}Gb`;
         disk_total = data["disk_total"]
         p9.innerHTML = `disk_total: ${disk_total.toFixed(2)}Gb`;
-        disk_used = data["disk_total"] - data["availble_disk"]
+        disk_used = data["disk_total"] - data["used_disk"]
         p10.innerHTML = `disk_used: ${disk_used.toFixed(2)}Gb`;
         disk_percent = data["disk_percent"]
         p11.innerHTML = `disk_percent: ${disk_percent.toFixed(1)}%`;
