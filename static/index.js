@@ -34,18 +34,15 @@ window.addEventListener('pywebviewready', function() {
   });
 });
     //section ram
-const p1 = document.querySelector("#p1");
-const p2 = document.querySelector("#p2");
-const p3 = document.querySelector("#p3");
 ram.addEventListener("click", () => {
     set_active(ram)
     change_display(cont_ram)
     window.pywebview.api.send_data("ram").then(data => {
         availble_ram = data["availble_ram"]
-        p1.innerHTML = `availble_ram: ${availble_ram.toFixed(2)}Gb`;
-        p2.innerHTML = `used_ram: ${data["total_ram"].toFixed(2)}Gb`;
+        document.querySelector("#p1 span").innerHTML = `${availble_ram.toFixed(2)}Gb`;
+        document.querySelector("#p2 span").innerHTML = `${data["total_ram"].toFixed(2)}Gb`;
         ram_percent = data["ram_percent"]
-        p3.innerHTML = `ram_percent: ${ram_percent.toFixed(1)}%`;
+        document.querySelector("#p3 span").innerHTML = `${ram_percent.toFixed(1)}%`;
 
 
         drawGauge1("ram-gauge1", data.availble_ram, data["total_ram"], "GB");

@@ -8,15 +8,10 @@
     height: 100% !important;
 }
 /*front-end div section*/
-#diva1,#diva3,#diva4{
+#diva3,#diva4{
     justify-content: space-evenly;
     width: 1000px;
     height: 800px;
-}
-#p1,#p2,#p3{
-    width: 300px; 
-    height: 100px;
-    white-space: nowrap;
 }
 #p8,#p9,#p10,#p11{
     width: 150px;
@@ -31,17 +26,6 @@ p{
     /* text-shadow: 4px 4px 2px black; */
     text-align: center;
 }
-#diva1 {
-    display: none;
-}
-#ram-info{
-    display: flex;
-}
-#ram-gauge1{
-    position: relative;
-    top: 20%;
-    right: 80%;
-}
 #main-gear:hover {
     color: gray;
     animation: spin 6s linear infinite;
@@ -54,6 +38,62 @@ p{
     to {
         transform: rotate(360deg);
     }
+}
+
+/*RAM*/
+
+#diva1{
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+}
+#diva1 span{
+    font-size: 40px;
+    font-weight: bold;
+    display: block;
+}
+#diva1 small {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 4px;
+    transition: 0.5s;
+}
+#diva1 small:hover{
+    font-size: 20px;
+}
+#p1,#p2,#p3{
+    position: absolute;
+    font-size: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    top: 30px;
+    width: 250px;      
+    height: 100px;
+}
+#p1 { left: 80px; }
+#p2 { left: 350px; }
+#p3 { left: 620px; }
+#p1:hover, #p2:hover, #p3:hover {
+    color: #e040fb;
+    border-color: #e040fb;
+    background: rgba(224, 64, 251, 0.1);
+    filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.8));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+#ram-gauge1{
+    position: relative;
+    top: 20%;
+    right: 80%;
 }
 
 /*CPU*/
@@ -72,6 +112,15 @@ p{
     font-size: 40px;
     font-weight: bold;
     display: block;
+}
+#diva2 small {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 4px;
+    transition: 0.5s;
 }
 #p7_5 {
     position: absolute;
@@ -98,15 +147,6 @@ p{
 #p4 { left: 80px; }
 #p5 { left: 350px; }
 #p7 { left: 620px; }
-#diva2 small {
-    display: block;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 4px;
-    transition: 0.5s;
-}
 #p4:hover, #p5:hover, #p7:hover {
     color: #e040fb;
     border-color: #e040fb;
