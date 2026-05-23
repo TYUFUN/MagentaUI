@@ -81,12 +81,16 @@ def get_open_ports():
         if conn.status == "LISTEN" and conn.laddr:
             ports.add(conn.laddr.port)
     return sorted(ports)
+asf = ps.swap_memory()
 info2 = [
         {
         "class": "ram", "value":
         {"used_ram": fix(s.used),
          "total_ram": fix(s.total),
-         "ram_percent": s.percent}},
+         "ram_percent": s.percent,
+         "swap_used": fix(asf.used),
+         "swap_total": fix(asf.total),
+         "swap_percent": asf.percent}},
         {"class": "disk", "value": 
         {"used_disk": fix(d.used),
          "disk_total": fix(d.total),
@@ -115,7 +119,8 @@ info2 = [
         #     {"connections": dict(ps.net_if_stats().items())}}
     }]
 info3 = [{'class': 'ram', 'value': {'availble_ram': 7.5337982177734375, 'total_ram': 13.509342193603516, 'ram_percent': 44.2}}, {'class': 'disk', 'value': {'availble_disk': 126.42206192016602, 'disk_total': 162.98172760009766, 'disk_percent': 18.2}}, {'class': 'cpu', 'value': {'cpu_used': 14.0, 'one_cpu': {'current': 2274.0077499999998, 'min': 1108.0, 'max': 4280.0}, 'cores': 8, 'cpu_temp': 59.9, 'cpu_type': 'AMD Ryzen 5 5500H with Radeon Graphics'}}, {'class': 'os', 'value': {'name': 'Linux', 'version': '#1 SMP PREEMPT_DYNAMIC Debian 6.12.85-1 (2026-04-30)', 'machine': 'x86_64', 'python': '3.13.5', 'load_avg': (1.38623046875, 1.4521484375, 1.41015625)}}, {'class': 'network', 'value': {'ports': [631, 1716, 8828, 44193, 57621, 57999], 'host': 'debian'}}]
-print(info2)
+
+print(info2[0])
 # processes = []
 # for proc in ps.process_iter(["pid", "name", "memory_info", "status"]):
 #     mem_mb = round(proc.info["memory_info"].rss / 1024 / 1024, 1)

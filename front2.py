@@ -10,7 +10,10 @@ info = [
      'value': 
             {'used_ram': 7.5337982177734375,
             'total_ram': 13.509342193603516,
-            'ram_percent': 44.2}},
+            'ram_percent': 44.2,
+            'swap_used': 0.0,
+            'swap_total': 9.117183685302734,
+            'swap_percent': 0.0}},
     {'class': 'disk',
      'value': 
             {'used_disk': 30.42206192016602,

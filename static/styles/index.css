@@ -66,7 +66,7 @@ p{
 #div1 small:hover{
     font-size: 20px;
 }
-#diva1,#diva2,#diva3,#diva4{
+#diva1,#diva2,#diva3,#diva4, #diva4_1, #diva4_2, #diva4_3 {
     position: absolute;
     font-size: 40px;
     background: rgba(255, 255, 255, 0.05);
@@ -84,7 +84,10 @@ p{
 #diva2 { left: 280px; }
 #diva3 { left: 500px; }
 #diva4 { left: 720px; }
-#diva1:hover, #diva2:hover, #diva3:hover, #diva4:hover {
+#diva4_1 { left: 60px; top: 150px; }
+#diva4_2 { left: 60px; top: 270px; }
+#diva4_3 { left: 60px; top: 390px; }
+#diva1:hover, #diva2:hover, #diva3:hover, #diva4:hover, #diva4_1:hover, #diva4_2:hover, #diva4_3:hover {
     color: #e040fb;
     border-color: #e040fb;
     background: rgba(224, 64, 251, 0.1);
@@ -98,11 +101,11 @@ p{
     border-radius: 12px;
     box-sizing: border-box;
     padding: 10px;
-    width: 860px;      
+    width: 420px;      
     height: 340px;
     position: absolute;
     top: 150px;
-    left: 60px;
+    left: 500px;
 }
 #ram-gauge1:hover{
     border-color: #e040fb;

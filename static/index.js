@@ -47,8 +47,11 @@ ram.addEventListener("click", () => {
         document.querySelector("#diva3 span").innerHTML = `${data["total_ram"].toFixed(2)}Gb`;
         ram_percent = data["ram_percent"]
         document.querySelector("#diva4 span").innerHTML = `${ram_percent.toFixed(1)}%`;
-
+        document.querySelector("#diva4_1 span").innerHTML = `${data["swap_total"].toFixed(2)}Gb`;
+        document.querySelector("#diva4_2 span").innerHTML = `${data["swap_used"].toFixed(2)}Gb`;
+        document.querySelector("#diva4_3 span").innerHTML = `${(data["swap_total"] - data["swap_used"]).toFixed(2)}Gb`;
         drawGauge1("ram-gauge1", data.used_ram, data["total_ram"], "GB");
+        // data["swap_percent"] - if you want to add swap percent to rect, you can do it like this
         p1.innerHTML = `${(data["used_ram"] / data["total_ram"] * 100).toFixed(1)}%`;
     });
 });
