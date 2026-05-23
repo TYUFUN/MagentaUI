@@ -1,9 +1,9 @@
     // containers for class
-const cont_ram = document.getElementById("diva1");
-const cont_cpu = document.getElementById("diva2");
-const cont_disk = document.getElementById("diva3");
-const cont_net = document.getElementById("diva4");
-const cont_system = document.getElementById("diva5");
+const cont_ram = document.getElementById("div1");
+const cont_cpu = document.getElementById("div2");
+const cont_disk = document.getElementById("div3");
+const cont_net = document.getElementById("div4");
+const cont_system = document.getElementById("div5");
     //func
 const ram = document.getElementById("ram");
 const cpu = document.getElementById("cpu");
@@ -39,11 +39,11 @@ ram.addEventListener("click", () => {
     change_display(cont_ram)
     window.pywebview.api.send_data("ram").then(data => {
         used_ram = data["used_ram"]
-        document.querySelector("#p1 span").innerHTML = `${used_ram.toFixed(2)}Gb`;
-        document.querySelector("#p2 span").innerHTML = `${data["total_ram"].toFixed(2)}Gb`;
+        document.querySelector("#diva1 span").innerHTML = `${used_ram.toFixed(2)}Gb`;
+        document.querySelector("#diva2 span").innerHTML = `${(data["total_ram"] - data["used_ram"]).toFixed(2)}Gb`;
+        document.querySelector("#diva3 span").innerHTML = `${data["total_ram"].toFixed(2)}Gb`;
         ram_percent = data["ram_percent"]
-        document.querySelector("#p3 span").innerHTML = `${ram_percent.toFixed(1)}%`;
-
+        document.querySelector("#diva4 span").innerHTML = `${ram_percent.toFixed(1)}%`;
 
         drawGauge1("ram-gauge1", data.used_ram, data["total_ram"], "GB");
     });
@@ -97,9 +97,9 @@ cpu.addEventListener("click", () => {
     window.pywebview.api.send_data("cpu").then(data => {
         change_display(cont_cpu);
         set_active(cpu);
-        document.querySelector("#p4 span").innerHTML = `${data["cpu_temp"]}°C`;
-        document.querySelector("#p5 span").innerHTML = `${(data["one_cpu"].current / 1000).toFixed(1)} GHz`;       
-        document.querySelector("#p7 span").innerHTML = data["cores"];
+        document.querySelector("#diva5 span").innerHTML = `${data["cpu_temp"]}°C`;
+        document.querySelector("#diva6 span").innerHTML = `${(data["one_cpu"].current / 1000).toFixed(1)} GHz`;       
+        document.querySelector("#diva7 span").innerHTML = data["cores"];
         p6.innerHTML = `${data["cpu_used"].toFixed(1)}%`;
         p7_5.innerHTML = data["cpu_type"];
         drawGauge2("cpu-gauge1", data["cpu_used"], 100, "%");
