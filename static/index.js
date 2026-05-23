@@ -33,7 +33,10 @@ window.addEventListener('pywebviewready', function() {
     ram.innerHTML = locale["ram"];
   });
 });
-    //section ram
+    
+//section ram
+
+const p1 = document.querySelector("#p1");
 ram.addEventListener("click", () => {
     set_active(ram)
     change_display(cont_ram)
@@ -46,12 +49,13 @@ ram.addEventListener("click", () => {
         document.querySelector("#diva4 span").innerHTML = `${ram_percent.toFixed(1)}%`;
 
         drawGauge1("ram-gauge1", data.used_ram, data["total_ram"], "GB");
+        p1.innerHTML = `${(data["used_ram"] / data["total_ram"] * 100).toFixed(1)}%`;
     });
 });
 
 function drawGauge1(svgId, used, total, unit) {
     const percent = (used / total) * 100;  
-    const width = 100, height = 120, radius = 50;
+    const width = 800, height = 375, radius = 180;
     const tau = 2 * Math.PI;
 
     d3.select(`#${svgId}`).selectAll("*").remove();
@@ -64,7 +68,7 @@ function drawGauge1(svgId, used, total, unit) {
         .attr("transform", `translate(${width/2}, ${height/2})`);
 
     const arc = d3.arc()
-        .innerRadius(radius - 10)
+        .innerRadius(radius - 30)
         .outerRadius(radius)
         .startAngle(-Math.PI * 0.75)
         .endAngle(Math.PI * 0.75);
@@ -72,7 +76,7 @@ function drawGauge1(svgId, used, total, unit) {
     g.append("path").attr("d", arc()).attr("fill", "#333");
 
     const fillArc = d3.arc()
-        .innerRadius(radius - 10)
+        .innerRadius(radius - 30)
         .outerRadius(radius)
         .startAngle(-Math.PI * 0.75)
         .endAngle(-Math.PI * 0.75 + (percent / 100) * tau * 0.75);
@@ -80,14 +84,8 @@ function drawGauge1(svgId, used, total, unit) {
     const color = percent > 75 ? "#E24B4A" : percent > 45 ? "#EF9F27" : "#9B59B6";
 
     g.append("path").attr("d", fillArc()).attr("fill", color);
-
-    // g.append("text")
-    //     .attr("text-anchor", "middle")
-    //     .attr("dy", "0.3em")
-    //     .attr("font-size", "16px")
-    //     .attr("fill", "#ff0909")
-    //     .text(`${used.toFixed(1)} ${unit}`);
 }
+const p1_capitalize = p1.style.fontSize = "100px";
 
 //section cpu
 const p6 = document.querySelector("#p6");
@@ -138,11 +136,13 @@ function drawGauge2(svgId, used, total, unit) {
         .startAngle(-Math.PI * 0.75)
         .endAngle(-Math.PI * 0.75 + (percent / 100) * tau * 0.75);
 
-    const color = percent > 75 ? "#E24B4A" : percent > 45 ? "#EF9F27" : "#9B59B6";
+    const color = percent > 80 ? "#E24B4A" : percent > 60 ? "#EF9F27" : "#9B59B6";
 
     g.append("path").attr("d", fillArc()).attr("fill", color);
 }
+
 const p6_capitalize = p6.style.fontSize = "100px";
+
 function drawRect1(svgId, cpu_temp) {
     const width = 100, height = 300;
     const maxTemp = 100;
