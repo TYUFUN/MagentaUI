@@ -92,7 +92,7 @@ p{
     border-color: #e040fb;
     background: rgba(224, 64, 251, 0.1);
     filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.8));
-  border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 #ram-gauge1 {
     background: rgba(255, 255, 255, 0.05);
@@ -115,13 +115,31 @@ p{
 #p1{
     position: absolute;
     top: 300px;
-    left: 340px;
+    left: 580px;
     font-size: 40px;
     line-height: 120px;
     text-align: center;
     font-size: 22px;
     font-weight: bold;
     color: #c725e4;
+}
+#ram-rect1{
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+    top: 150px;
+    left: 280px;
+    width: 200px;      
+    height: 340px;
+}
+#ram-rect1:hover{
+    border-color: #e040fb;
+    background: rgba(224, 64, 251, 0.1);
+    filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.6));
 }
 
 /*CPU*/

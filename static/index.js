@@ -50,15 +50,17 @@ ram.addEventListener("click", () => {
         document.querySelector("#diva4_1 span").innerHTML = `${data["swap_total"].toFixed(2)}Gb`;
         document.querySelector("#diva4_2 span").innerHTML = `${data["swap_used"].toFixed(2)}Gb`;
         document.querySelector("#diva4_3 span").innerHTML = `${(data["swap_total"] - data["swap_used"]).toFixed(2)}Gb`;
+
         drawGauge1("ram-gauge1", data.used_ram, data["total_ram"], "GB");
-        // data["swap_percent"] - if you want to add swap percent to rect, you can do it like this
         p1.innerHTML = `${(data["used_ram"] / data["total_ram"] * 100).toFixed(1)}%`;
+
+        drawRect2("ram-rect1", data["swap_percent"], data["swap_used"],data["swap_total"], "%");
     });
 });
 
 function drawGauge1(svgId, used, total, unit) {
     const percent = (used / total) * 100;  
-    const width = 800, height = 375, radius = 180;
+    const width = 400, height = 375, radius = 180;
     const tau = 2 * Math.PI;
 
     d3.select(`#${svgId}`).selectAll("*").remove();
@@ -88,7 +90,74 @@ function drawGauge1(svgId, used, total, unit) {
 
     g.append("path").attr("d", fillArc()).attr("fill", color);
 }
+
 const p1_capitalize = p1.style.fontSize = "100px";
+
+function drawRect2(svgId, swap_percent, swap_used, swap_total) {
+    const width = 100, height = 300;
+    const maxTemp = 100;
+    const pad = 10;
+
+    d3.select(`#${svgId}`).selectAll("*").remove();
+
+    const svg = d3.select(`#${svgId}`)
+        .attr("width", width + 60)
+        .attr("height", height);
+
+    svg.append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("rx", 6)
+        .attr("fill", "#333");
+
+    const color = swap_percent > 80 ? "#E24B4A" : swap_percent > 60 ? "#EF9F27" : "#6fc437";
+
+    const barHeight = (swap_used / swap_total) * (height - pad);
+    svg.append("rect")
+        .attr("width", width)
+        .attr("y", height)
+        .attr("height", 0)
+        .attr("rx", 6)
+        .attr("fill", color)
+        .transition().duration(800)
+        .attr("y", height - barHeight)
+        .attr("height", barHeight);
+
+    const temps = [20, 40, 60, 80, 100];
+    temps.forEach(t => {
+        const y = pad + (height - pad) - (t / 100) * (height - pad);
+
+        svg.append("line")
+            .attr("x1", 0).attr("x2", width)
+            .attr("y1", y).attr("y2", y)
+            .attr("stroke", "white")
+            .attr("stroke-width", 0.5)
+            .attr("opacity", 0.4);
+
+        svg.append("text")
+            .attr("x", width + 5)
+            .attr("y", y + 4)
+            .attr("font-size", "15px")
+            .attr("fill", "#e040fb")
+            .text(`${t}%`);
+    });
+
+    const currentY = pad + (height - pad) - (swap_percent / 100) * (height - pad);
+
+    svg.append("line")
+        .attr("x1", 0).attr("x2", width)
+        .attr("y1", currentY).attr("y2", currentY)
+        .attr("stroke", "#00BFFF")
+        .attr("stroke-width", 1.5);
+
+    svg.append("text")
+        .attr("x", width - 65)
+        .attr("y", currentY + 15)
+        .attr("font-size", "18px")
+        .attr("fill", "#8f18f1")
+        .attr("font-weight", "bold")
+        .text(`${swap_percent.toFixed(1)}%`);
+}
 
 //section cpu
 const p6 = document.querySelector("#p6");
