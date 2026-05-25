@@ -55,7 +55,7 @@ ram.addEventListener("click", () => {
         p1.innerHTML = `${(data["used_ram"] / data["total_ram"] * 100).toFixed(1)}%`;
 
         drawRect2("ram-rect1", data["swap_percent"], data["swap_used"],data["swap_total"], "%");
-        const ramHistory = createCpuHistory("ram-history", data["used_ram"], data["total_ram"], "GB");
+        const RamHistory = createCpuHistory("ram-history", data["used_ram"], data["total_ram"], "GB");
     });
 });
 
@@ -161,6 +161,7 @@ function drawRect2(svgId, swap_percent, swap_used, swap_total) {
 }
 
 //section cpu
+
 const p6 = document.querySelector("#p6");
 const p7_5 = document.querySelector("#p7_5");
 const cpu_gauge = document.querySelector("#cpu-gauge");
@@ -286,7 +287,7 @@ function createCpuHistory(containerId, used, total, unit) {
     total = Number(total);
     used = Number(used);
     const history = Array(60).fill(0);
-    const margin = {top: 10, right: 16, bottom: 10, left: 40};
+    const margin = {top: 10, right: 16, bottom: 10, left: 50};
 
     d3.select(`#${containerId}`).selectAll("*").remove();
 
@@ -361,7 +362,9 @@ function createCpuHistory(containerId, used, total, unit) {
         }
     };
 }
+
 //section disk
+
 const p8 = document.querySelector("#p8");
 const p9 = document.querySelector("#p9");
 const p10 = document.querySelector("#p10");
@@ -380,7 +383,9 @@ disk.addEventListener("click", () => {
         p11.innerHTML = `disk_percent: ${disk_percent.toFixed(1)}%`;
     });
 });
+
 //section network
+
 const p12 = document.querySelector("#p12");
 const p13 = document.querySelector("#p13");
 net.addEventListener("click", () => {
@@ -392,7 +397,9 @@ net.addEventListener("click", () => {
 
     });
 });
+
 // section system
+
 const p14 = document.querySelector("#p14");
 const p15 = document.querySelector("#p15");
 const p16 = document.querySelector("#p16");
@@ -410,6 +417,9 @@ system.addEventListener("click", () => {
 
     });
 });
+
+// SVG
+
 const SVG_GEAR = `
 <svg id="main-gear" width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g fill="currentColor">

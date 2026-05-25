@@ -141,6 +141,24 @@ p{
     background: rgba(224, 64, 251, 0.1);
     filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.6));
 }
+#ram-history{
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    position: absolute;
+    top: 510px;
+    left: 60px;
+    width: 860px;      
+    height: 170px;
+}
+#ram-history:hover{
+    border-color: #e040fb;
+    background: rgba(224, 64, 251, 0.1);
+    filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.4));
+}
 
 /*CPU*/
 
@@ -261,16 +279,8 @@ p{
     width: 790px;      
     height: 170px;
 }
-#ram-history{
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    box-sizing: border-box;
-    padding: 10px;
-    position: absolute;
-    top: 510px;
-    left: 60px;
-    width: 860px;      
-    height: 170px;
+#cpu-history1:hover{
+    border-color: #e040fb;
+    background: rgba(224, 64, 251, 0.1);
+    filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.4));
 }
