@@ -37,7 +37,7 @@ window.addEventListener('pywebviewready', function() {
   const port = document.getElementById("port");
   const language = document.getElementById("choose").value = "Russian"; //example of changing select value manually
   const connect = document.getElementById("method");
-  port.value = language.value ; // example of changing input value manually
+  port.value = "5500" ; // example of changing input value manually
   send = {
     "ip": ip,
     "port": port.value,

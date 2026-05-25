@@ -55,6 +55,7 @@ ram.addEventListener("click", () => {
         p1.innerHTML = `${(data["used_ram"] / data["total_ram"] * 100).toFixed(1)}%`;
 
         drawRect2("ram-rect1", data["swap_percent"], data["swap_used"],data["swap_total"], "%");
+        const ramHistory = createCpuHistory("ram-history", data["used_ram"], data["total_ram"], "GB");
     });
 });
 
@@ -282,6 +283,8 @@ function drawRect1(svgId, cpu_temp) {
 }
 
 function createCpuHistory(containerId, used, total, unit) {
+    total = Number(total);
+    used = Number(used);
     const history = Array(60).fill(0);
     const margin = {top: 10, right: 16, bottom: 10, left: 40};
 
@@ -309,18 +312,21 @@ function createCpuHistory(containerId, used, total, unit) {
     grad.append("stop").attr("offset", "0%").attr("stop-color", "#d63af9").attr("stop-opacity", 0.4);
     grad.append("stop").attr("offset", "100%").attr("stop-color", "#d63af9").attr("stop-opacity", 0.02);
 
-    [0, 1, 2, 3, 4].map(i => parseFloat(((total / 4) * i).toFixed(1))).forEach(val => {
+    [0, 1, 2, 3, 4].map(i => (total / 4) * i).forEach(val => {
+        const formattedVal = parseFloat(val.toFixed(1));
         const y = h - (val / total) * h;
+
         g.append("line")
             .attr("x1", 0).attr("x2", w)
             .attr("y1", y).attr("y2", y)
             .attr("stroke", "rgba(255,255,255,0.08)");
+
         g.append("text")
             .attr("x", -8).attr("y", y + 4)
             .attr("text-anchor", "end")
             .attr("fill", "rgba(255,255,255,0.35)")
             .attr("font-size", "11px")
-            .text(val === 0 ? "0 %" : `${String(val).replace(".", ",")} ${unit}`);
+            .text(formattedVal === 0 ? `0 ${unit}` : `${String(formattedVal).replace(".", ",")} ${unit}`);
     });
 
     const areaPath = g.append("path").attr("fill", "url(#memGrad)");
