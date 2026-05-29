@@ -8,13 +8,10 @@
     height: 100% !important;
 }
 /*front-end div section*/
-#div3,#div4{
+#div4{
     justify-content: space-evenly;
     width: 1000px;
     height: 800px;
-}
-#p8,#p9,#p10,#p11{
-    width: 150px;
 }
 #p12{
     width: 800px;
@@ -66,7 +63,7 @@ p{
 #div1 small:hover{
     font-size: 20px;
 }
-#diva1,#diva2,#diva3,#diva4, #diva4_1, #diva4_2, #diva4_3 {
+#diva1,#diva2,#diva3,#diva4, #diva5, #diva6, #diva7 {
     position: absolute;
     font-size: 40px;
     background: rgba(255, 255, 255, 0.05);
@@ -84,10 +81,10 @@ p{
 #diva2 { left: 280px; }
 #diva3 { left: 500px; }
 #diva4 { left: 720px; }
-#diva4_1 { left: 60px; top: 150px; }
-#diva4_2 { left: 60px; top: 270px; }
-#diva4_3 { left: 60px; top: 390px; }
-#diva1:hover, #diva2:hover, #diva3:hover, #diva4:hover, #diva4_1:hover, #diva4_2:hover, #diva4_3:hover {
+#diva5 { left: 60px; top: 150px; }
+#diva6 { left: 60px; top: 270px; }
+#diva7 { left: 60px; top: 390px; }
+#diva1:hover, #diva2:hover, #diva3:hover, #diva4:hover, #diva5:hover, #diva6:hover, #diva7:hover {
     color: #e040fb;
     border-color: #e040fb;
     background: rgba(224, 64, 251, 0.1);
@@ -194,7 +191,7 @@ p{
     font-size: 20px;
     font-weight: bold;
 }
-#diva5, #diva6, #diva7 {
+#diva8, #diva9, #diva10 {
     position: absolute;
     font-size: 40px;
     background: rgba(255, 255, 255, 0.05);
@@ -208,10 +205,10 @@ p{
     width: 250px;      
     height: 100px;
 }
-#diva5 { left: 80px; }
-#diva6 { left: 350px; }
-#diva7 { left: 620px; }
-#diva5:hover, #diva6:hover, #diva7:hover {
+#diva8 { left: 80px; }
+#diva9 { left: 350px; }
+#diva10 { left: 620px; }
+#diva8:hover, #diva9:hover, #diva10:hover {
     color: #e040fb;
     border-color: #e040fb;
     background: rgba(224, 64, 251, 0.1);
@@ -283,4 +280,77 @@ p{
     border-color: #e040fb;
     background: rgba(224, 64, 251, 0.1);
     filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.4));
+}
+
+/*DISK*/
+
+#div3 {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+}
+#div3 small:hover{
+    font-size: 20px;
+}
+#div3 span {
+    font-size: 40px;
+    font-weight: bold;
+    display: block;
+}
+#div3 small {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 4px;
+    transition: 0.5s;
+}
+#diva11,#diva12,#diva13,#diva14 {
+    position: absolute;
+    font-size: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    top: 30px;
+    width: 200px;      
+    height: 100px;
+}
+#diva11 { left: 60px; }
+#diva12 { left: 280px; }
+#diva13 { left: 500px; }
+#diva14 { left: 720px; }
+#diva11:hover, #diva12:hover, #diva13:hover, #diva14:hover {
+    color: #e040fb;
+    border-color: #e040fb;
+    background: rgba(224, 64, 251, 0.1);
+    filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.8));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+#disk-rect1, #disk-rect2, #disk-rect3, #disk-rect4{
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+    top: 150px;
+    width: 200px;      
+    height: 340px;
+}
+#disk-rect1 { left: 60px;}
+#disk-rect2 { left: 80px; }
+#disk-rect3 { left: 100px; }
+#disk-rect4 { left: 120px; }
+#disk-rect1:hover, #disk-rect2:hover, #disk-rect3:hover, #disk-rect4:hover{
+    border-color: #e040fb;
+    background: rgba(224, 64, 251, 0.1);
+    filter: drop-shadow(0 0 20px rgba(224, 64, 251, 0.6));
 }
