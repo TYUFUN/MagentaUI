@@ -376,8 +376,8 @@ disk.addEventListener("click", () => {
         document.querySelector("#diva14 span").innerHTML = `${data["disk_percent"].toFixed(2)}%`;
 
         drawRect3("disk-rect1", data["used_disk"], data["disk_total"]);
-        drawRect4("disk-rect2", data["disk_total"]);
-        drawRect5("disk-rect3", data["disk_total"], data["used_disk"]);
+        drawRect4("disk-rect2", data["disk_total"], data["used_disk"]);
+        drawRect5("disk-rect3", data["used_disk"], data["disk_total"]);
         drawRect6("disk-rect4", data["disk_percent"]);
     });
 });
@@ -449,73 +449,7 @@ function drawRect3(svgId, used_disk, total_disk) {
         .text(`${used_percent.toFixed(1)}%`);
 }
 
-function drawRect4(svgId, disk_total) {
-    const width = 100, height = 360;
-    const maxDisk = 100;
-    const pad = 10;
-
-    d3.select(`#${svgId}`).selectAll("*").remove();
-
-    const svg = d3.select(`#${svgId}`)
-        .attr("width", width + 60)
-        .attr("height", height);
-    
-    svg.append("rect")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("rx", 6)
-        .attr("fill", "#333");
-    
-    const color = disk_total > 90 ? "#E24B4A" : disk_total > 70 ? "#EF9F27" : "#6fc437";
-
-    const barHeight = (disk_total / maxDisk) * (height - pad)
-    svg.append("rect")
-        .attr("width", width)
-        .attr("y", height)
-        .attr("height", 0)
-        .attr("rx", 6)
-        .attr("fill", color)
-        .transition().duration(800)
-        .attr("y", height - barHeight)
-        .attr("height", barHeight)
-    
-    const disk = [20, 40, 60, 80, 100]
-    disk.forEach(t => {
-        const y = pad + (height - pad) - (t/100) * (height - pad);
-
-        svg.append("line")
-            .attr("x1", 0).attr("x2", width)
-            .attr("y1", y).attr("y2", y)
-            .attr("stroke", "white")
-            .attr("stroke-width", 0.5)
-            .attr("opacity", 0.4);
-
-        svg.append("text")
-            .attr("x", width + 5)
-            .attr("y", y + 4)
-            .attr("font-size", "15px")
-            .attr("fill", "#e040fb")
-            .text(`${t}%`);
-    });
-
-    const currentY = pad + (height - pad) - (disk_total / 100) * (height - pad);
-
-    svg.append("line")
-        .attr("x1", 0).attr("x2", width)
-        .attr("y1", currentY).attr("y2", currentY)
-        .attr("stroke", "#00BFFF")
-        .attr("stroke-width", 1.5);
-    
-    svg.append("text")
-        .attr("x", width - 65)
-        .attr("y", currentY + 15)
-        .attr("font-size", "18px")
-        .attr("fill", "#8f18f1")
-        .attr("font-weight", "bold")
-        .text(`${disk_total.toFixed(1)}%`);
-}
-
-function drawRect5(svgId, disk_total, used_disk) {
+function drawRect4(svgId, disk_total, used_disk) {
     const availble_percent = ((disk_total - used_disk)/disk_total) * 100;
     const width = 100, height = 360;
     const maxDisk = 100;
@@ -580,6 +514,81 @@ function drawRect5(svgId, disk_total, used_disk) {
         .attr("fill", "#8f18f1")
         .attr("font-weight", "bold")
         .text(`${availble_percent.toFixed(1)}%`);
+}
+
+function drawRect5(svgId, used_disk, disk_total) {
+    const width = 100, height = 360;
+    const pad = 10;
+    const usedPercent = (used_disk / disk_total) * 100;
+    const freePercent = 100 - usedPercent;
+    const freeHeight = (freePercent / 100) * height;
+    const usedHeight = height - freeHeight;
+
+    d3.select(`#${svgId}`).selectAll("*").remove();
+
+    const svg = d3.select(`#${svgId}`)
+        .attr("width", width + 60)
+        .attr("height", height);
+
+    svg.append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("rx", 6)
+        .attr("fill", "#333");
+
+    svg.append("rect")
+        .attr("width", width)
+        .attr("y", height)
+        .attr("height", 0)
+        .attr("fill", "#6fc437")
+        .transition().duration(800)
+        .attr("y", height - freeHeight)
+        .attr("height", freeHeight);
+
+    svg.append("rect")
+        .attr("width", width)
+        .attr("y", height)
+        .attr("height", 0)
+        .attr("fill", "#E24B4A")
+        .transition().duration(800)
+        .attr("y", 0)
+        .attr("height", usedHeight);
+
+    [20, 40, 60, 80, 100].forEach(t => {
+        const y = pad + (height - pad) - (t / 100) * (height - pad);
+
+        svg.append("line")
+            .attr("x1", 0).attr("x2", width)
+            .attr("y1", y).attr("y2", y)
+            .attr("stroke", "white")
+            .attr("stroke-width", 0.5)
+            .attr("opacity", 0.4);
+
+        svg.append("text")
+            .attr("x", width + 5)
+            .attr("y", y + 4)
+            .attr("font-size", "15px")
+            .attr("fill", "#e040fb")
+            .text(`${t}%`);
+    });
+
+    svg.append("text")
+        .attr("x", width / 2)
+        .attr("y", usedHeight / 2 + 6)
+        .attr("text-anchor", "middle")
+        .attr("font-size", "18px")
+        .attr("fill", "white")
+        .attr("font-weight", "bold")
+        .text(`${usedPercent.toFixed(0)}%`);
+
+    svg.append("text")
+        .attr("x", width / 2)
+        .attr("y", usedHeight + freeHeight / 2 + 6)
+        .attr("text-anchor", "middle")
+        .attr("font-size", "18px")
+        .attr("fill", "white")
+        .attr("font-weight", "bold")
+        .text(`${freePercent.toFixed(0)}%`);
 }
 
 function drawRect6(svgId, disk_percent) {
