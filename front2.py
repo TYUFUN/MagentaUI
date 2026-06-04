@@ -32,11 +32,13 @@ info = [
             'version': '#1 SMP PREEMPT_DYNAMIC Debian 6.12.85-1 (2026-04-30)',
             'machine': 'x86_64',
             'python': '3.13.5',
-            'load_avg': (1.38623046875, 1.4521484375, 1.41015625)}},
+            'load_avg': (1.38623046875, 1.4521484375, 1.41015625),
+            'boot_time': 12,
+            'timezone': 'CEST',
+            'host': 'debian'}},
     {'class': 'network',
         'value':
-            {'ports': [631, 1716, 8858, 42193, 56621, 57998],
-            'host': 'debian'}}]
+            {'ports': [631, 1716, 8858, 42193, 56621, 57998],}}]
 #example data
 def load_locale(selected:str) -> dict:
     with open(BASE_DIR / f"locale/{selected}.json", "r", encoding="utf-8") as q:

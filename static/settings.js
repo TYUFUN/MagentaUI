@@ -39,10 +39,10 @@ window.addEventListener('pywebviewready', function() {
   const connect = document.getElementById("method");
   port.value = "5500" ; // example of changing input value manually
   send = {
-    "ip": ip,
+    "ip": ip.value,
     "port": port.value,
     "lang": language,
-    "method": connect
+    "method": connect.value
   }
   window.pywebview.api.create_config(send).then(config => {
 
