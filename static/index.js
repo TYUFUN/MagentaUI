@@ -572,23 +572,29 @@ function drawRect5(svgId, used_disk, disk_total) {
             .text(`${t}%`);
     });
 
-    svg.append("text")
-        .attr("x", width / 2)
-        .attr("y", usedHeight / 2 + 6)
-        .attr("text-anchor", "middle")
-        .attr("font-size", "18px")
-        .attr("fill", "white")
-        .attr("font-weight", "bold")
-        .text(`${usedPercent.toFixed(0)}%`);
+    svg.append("line")
+        .attr("x1", 0).attr("x2", width)
+        .attr("y1", usedHeight).attr("y2", usedHeight)
+        .attr("stroke", "#00BFFF")
+        .attr("stroke-width", 1.5);
 
     svg.append("text")
         .attr("x", width / 2)
-        .attr("y", usedHeight + freeHeight / 2 + 6)
+        .attr("y", usedHeight - 5)
         .attr("text-anchor", "middle")
         .attr("font-size", "18px")
-        .attr("fill", "white")
+        .attr("fill", "#8f18f1")
         .attr("font-weight", "bold")
-        .text(`${freePercent.toFixed(0)}%`);
+        .text(`${usedPercent.toFixed(1)}%`);
+
+    svg.append("text")
+        .attr("x", width / 2)
+        .attr("y", usedHeight + 20)
+        .attr("text-anchor", "middle")
+        .attr("font-size", "18px")
+        .attr("fill", "#8f18f1")
+        .attr("font-weight", "bold")
+        .text(`${freePercent.toFixed(1)}%`);
 }
 
 function drawRect6(svgId, disk_percent) {

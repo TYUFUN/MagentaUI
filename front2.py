@@ -16,7 +16,7 @@ info = [
             'swap_percent': 0.0}},
     {'class': 'disk',
      'value': 
-            {'used_disk': 30.42206192016602,
+            {'used_disk':70.42206192016602,
             'disk_total': 162.98172760009766,
             'disk_percent': 18.2}},
     {'class': 'cpu',
